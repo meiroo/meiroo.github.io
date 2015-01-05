@@ -1,35 +1,30 @@
 define(function(require, exports, module) {
 
-    //var angular = require('angular');
+    var angular = require('angular');
+    var loader = require('BlogLoader');
+
+
     
     
     var controller = function($scope,Data,$location){
     	$scope.Data = Data;
     	var vm = $scope;
     	vm.array = [];
-    	vm.array.push({
-    		id:"1",
-    		title:"Blog1",
-    		createdAt:"2015-1-5",
-    		filter:"Test",
-    		contentThumb:"###aaa  \n * aaa\n * bbb",
-    	})
-
-    	vm.array.push({
-    		id:"2",
-    		title:"Blog2",
-    		createdAt:"2015-1-5",
-    		filter:"Test",
-    		contentThumb:"##简单介绍\n\n。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。",
-    	})
-
-    	vm.array.push({
-    		id:"3",
-    		title:"Blog2",
-    		createdAt:"2015-1-5",
-    		filter:"Test",
-    		contentThumb:"简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。",
-    	})
+        loader.Load(function(arr){
+            $scope.$apply(function(){
+                for(var i = 0; i< arr.length; i++){
+                    var blog = arr[i];
+                    vm.array.push({
+                        id:blog.name,
+                        title:blog.name,
+                        createdAt:"2015-1-5",
+                        filter:"Blog",
+                        contentThumb:blog.content,
+                    })
+                }
+            });
+        });
+    	
 
     	console.log('title controller...');
 

@@ -10,6 +10,8 @@ require.config({
         "markdown":"js/markdown",
         "blogApp":'controller/blogApp',
         'BlogList':'controller/BlogList',
+        'BlogLoader':'controller/BlogLoader',
+        'SingleBlog':'controller/SingleBlog',
 
     },
     shim: {

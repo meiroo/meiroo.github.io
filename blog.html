@@ -107,14 +107,6 @@
         $.material.ripples();
         $.material.input();
         $.material.init();
-        
-
-        $(".thumbnail").on("click",function(event){
-           event.preventDefault();
-           var imgsrc = event.target.src;
-           $('#image').modal('show');
-           $('#image').find('img').attr("src",imgsrc);
-        });
     });
 </script>
 </body>

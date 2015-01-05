@@ -1,6 +1,7 @@
 define(function(require, exports, module) {
 
     var BlogList = require('BlogList');
+    var SingleBlog = require('SingleBlog');
 
     var angular = require('angular');
 
@@ -12,16 +13,13 @@ define(function(require, exports, module) {
     app.config(function($routeProvider, $locationProvider) {
 
       $routeProvider
-      .when('/about', {
-	    templateUrl: 'template/about.html'
+      .when('/blog/:name', {
+	    templateUrl: 'template/singleBlog.html',
+	    controller: 'SingleBlog'
 	   })
-	  .when('/:pathName*', {
-	    templateUrl: 'template/imagespace.html',
-	    controller: 'ImageSpaceController'
-	   })
-	  .when('/', {
-	    templateUrl: 'template/imagespace.html',
-	    controller: 'ImageSpaceController'
+      .when('/', {
+	    templateUrl: 'template/blogList.html',
+	    controller: 'BlogList'
 	   })
        ;
 	   
