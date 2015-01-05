@@ -1,20 +1,7 @@
 
-<!DOCTYPE html>
-<html ng-app="Blog">
-<head>
-  <title>Blogs</title>
-  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/ripples.min.css" rel="stylesheet">
-  <link href="css/material.min.css" rel="stylesheet">
-  <link href="css/project.css" rel="stylesheet">
-</head>
-<body>
-
-  <div class="container">
     <div ng-controller="SingleBlog">
       <div class="jumbotron">
-        <h2 class="text-center">{{blog.title}}</h2>
+        <h2 class="text-center">SingleBlog:{{title}}</h2>
 
         <h4>写作于  {{createdAt}}</h4>
         <h4>TAGS:  {{filter}}</h4>
@@ -34,7 +21,3 @@
         </h4>
       </div>
     </div>
-
-  </div>
-</body>
-</html>

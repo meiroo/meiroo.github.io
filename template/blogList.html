@@ -1,0 +1,24 @@
+<div ng-controller="BlogList">
+      <div class="jumbotron" ng-repeat="blog in array">
+        <a href="/blog.html#/name/{{blog.id}}">
+          <h2 class="text-center">{{blog.title}}</h2>
+        </a>
+
+        <h4>写作于  {{blog.createdAt}}</h4>
+        <h4>TAGS:  {{blog.filter}}</h4>
+
+        
+
+        <div class="panel panel-default">
+        <p btf-markdown="blog.contentThumb"></p>
+        </div>
+
+        <h4 class="">
+          <p>
+            <a class="btn btn-primary btn-xs"> <i class="mdi-navigation-expand-more"></i>
+              Learn more
+            </a>
+          </p>
+        </h4>
+      </div>
+    </div>

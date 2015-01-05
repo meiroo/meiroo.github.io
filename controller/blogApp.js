@@ -13,15 +13,14 @@ define(function(require, exports, module) {
     app.config(function($routeProvider, $locationProvider) {
 
       $routeProvider
-      .when('/blog/:name', {
-	    templateUrl: 'template/singleBlog.html',
-	    controller: 'SingleBlog'
-	   })
       .when('/', {
 	    templateUrl: 'template/blogList.html',
 	    controller: 'BlogList'
 	   })
-       ;
+      .when('/name/:name/', {
+	    templateUrl: 'template/singleBlog.html',
+	    controller: 'SingleBlog'
+	   });
 	   
 	});
 
@@ -40,10 +39,9 @@ define(function(require, exports, module) {
 
 
 
-    app.controller('BlogList',BlogList);    
-    //app.controller('newfolderController',NewfolderController);
-    //app.controller('rmfolderController',RmfolderController);
-    //app.controller('ImageSpaceController',ImageSpaceController);
+    app.controller('BlogList',BlogList);
+    app.controller('SingleBlog',SingleBlog);    
+
 
 	module.exports = app;
 

@@ -6,7 +6,7 @@ define(function(require, exports, module) {
     var controller = function($scope,Data,$location){
     	$scope.Data = Data;
     	var vm = $scope;
-    	vm.id = "test";
+    	vm.title = "test";
 
 	    vm.$watchCollection('Data.url', function() {
 			vm.url = Data.url;
