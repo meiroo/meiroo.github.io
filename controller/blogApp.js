@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 
-    var BlogList = require('controller/BlogList');
+    var BlogList = require('BlogList');
 
     var angular = require('angular');
 

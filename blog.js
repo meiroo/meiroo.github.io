@@ -6,6 +6,7 @@ require.config({
         angular: "js/angular",
         "angular-route": "js/angular-route",
         "blogApp":'controller/blogApp',
+        'BlogList':'controller/BlogList',
 
     },
     shim: {
