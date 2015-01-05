@@ -4,7 +4,7 @@ define(function(require, exports, module) {
 
     var angular = require('angular');
 
-    var app = angular.module("Blog", ['ngRoute'], function() {
+    var app = angular.module("Blog", ['ngRoute','btford.markdown'], function() {
     });
 
 

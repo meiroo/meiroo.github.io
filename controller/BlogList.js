@@ -1,6 +1,6 @@
 define(function(require, exports, module) {
 
-    var angular = require('angular');
+    //var angular = require('angular');
     
     
     var controller = function($scope,Data,$location){
@@ -12,7 +12,7 @@ define(function(require, exports, module) {
     		title:"Blog1",
     		createdAt:"2015-1-5",
     		filter:"Test",
-    		contentThumb:"简单介绍。。。。",
+    		contentThumb:"###aaa  \n * aaa\n * bbb",
     	})
 
     	vm.array.push({
@@ -20,7 +20,7 @@ define(function(require, exports, module) {
     		title:"Blog2",
     		createdAt:"2015-1-5",
     		filter:"Test",
-    		contentThumb:"简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。",
+    		contentThumb:"##简单介绍\n\n。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。简单介绍。。。。",
     	})
 
     	vm.array.push({
