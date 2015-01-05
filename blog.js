@@ -5,7 +5,7 @@ require.config({
     paths: {
         angular: "js/angular",
         "angular-route": "js/angular-route",
-        "app":'controller/blogApp',
+        "blogApp":'controller/blogApp',
 
     },
     shim: {
@@ -25,7 +25,7 @@ window.name = "NG_DEFER_BOOTSTRAP!";
 
 $(document).ready(function() {
 
-    require(['angular','angular-route','app'],function(angular,route,app){
+    require(['angular','angular-route','blogApp'],function(angular,route,app){
         
         var $html = angular.element(document.getElementsByTagName('html')[0]);
         angular.element().ready(function() {

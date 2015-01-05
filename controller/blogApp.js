@@ -1,11 +1,10 @@
 define(function(require, exports, module) {
 
-    //var BlogList = require('controller/BlogList');
+    var BlogList = require('controller/BlogList');
 
     var angular = require('angular');
 
     var app = angular.module("Blog", ['ngRoute'], function() {
-    	alert('test');
     });
 
 
@@ -43,7 +42,7 @@ define(function(require, exports, module) {
 
 
 
-    //app.controller('BlogList',BlogList);    
+    app.controller('BlogList',BlogList);    
     //app.controller('newfolderController',NewfolderController);
     //app.controller('rmfolderController',RmfolderController);
     //app.controller('ImageSpaceController',ImageSpaceController);
