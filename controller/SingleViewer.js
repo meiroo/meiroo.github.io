@@ -2,14 +2,7 @@ define(function(require, exports, module) {
 
     var angular = require('angular');
     var loader = require('FileLoader');
-    
-    function getName(url){
-        var path = url;
-        if(path.match(/[^/]+$/)){
-            path = path.match(/[^/]+$/)[0];
-        }
-        return path;
-    }
+    var api = require('GithubAPI');
 
     var controller = function($scope,Data,$routeParams,$location){
     	$scope.Data = Data;
@@ -19,7 +12,7 @@ define(function(require, exports, module) {
     	//console.log($routeParams);
     	//contentThumb
 
-    	loader.LoadSingleFile($routeParams.id,function(blog){
+    	/*loader.LoadSingleFile($routeParams.id,function(blog){
             $scope.$apply(function(){
                 
                 vm.title=getName(blog.name);
@@ -28,6 +21,23 @@ define(function(require, exports, module) {
 				vm.contentThumb=blog.content;
                 
             });
+        });*/
+
+		api.getFileContent($routeParams.url,function(content){
+			//console.log(content);
+			// /content = window.atob(content);
+			content = decodeURIComponent(escape(window.atob(content)));
+			//console.log(content);
+            $scope.$apply(function(){
+                vm.title=$routeParams.name;
+                if(vm.title.match(/.*\.md/gi)){
+                	vm.content= content;
+                }else{
+                	vm.content= '<pre>'+content+'</pre>';
+                }
+                
+            });
+
         });
 
 

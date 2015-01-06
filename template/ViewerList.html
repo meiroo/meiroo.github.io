@@ -1,27 +1,34 @@
+
+<div div class="col-lg-3 col-md-3 col-sm-3 togglebutton">
+    <label>
+        <input type="checkbox" ng-model="check" checked=""><span class="toggle"></span> {{check?"ALL FILES":"MD FILE"}}
+    </label>
+</div>
+
+<div div class="col-lg-3 col-md-3 col-sm-3 input-group">
+<span class="input-group-addon"><b>Filter:</b></span>
+    <div class="form-control-wrapper"><input type="text" ng-model="search" class="form-control empty" placeholder="RE Supported"><span class="material-input"></span></div>
+
+</div>
+
+
+
 <table class="table table-striped table-hover ">
     <thead>
         <tr>
             <th>#</th>
             <th>Title</th>
-            <th>Column heading</th>
-            <th>Column heading</th>
+            <th>Full Path</th>
         </tr>
     </thead>
     <tbody>
       
 
 
-        <tr ng-repeat="blog in array">
-            <td>1</td>
-            <td><a href="/viewer.html#/name/{{blog.title}}/?id={{blog.id}}">{{blog.title}}</a></td>
-            <td>{{blog.createdAt}}</td>
-            <td>{{blog.filter}}</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+        <tr ng-repeat="blog in array |filter:myFilter| limitTo: 10 ">
+            <td>{{blog.index}}</td>
+            <td><a href="/viewer.html#/name/{{blog.title}}/?url={{blog.url}}">{{blog.title}}</a></td>
+            <td>{{blog.fullpath}}</td>
         </tr>
         
     </tbody>

@@ -1,15 +1,15 @@
-
-    <div>
-      <div class="jumbotron">
+    <div class="jumbotron">
         <h2 class="text-center">{{title}}</h2>
-
-        <h4>写作于  {{createdAt}}</h4>
-        <h4>TAGS:  {{filter}}</h4>
-
+       
         
-
         <div class="panel panel-default">
-        <p btf-markdown="contentThumb"></p>
+        <p btf-markdown="content"></p>
+        <!--
+         <div ng-switch on="isExists(item)">
+            <span ng-switch-when="true">Available</span>
+            <span ng-switch-default>oh no, you don't have it</span>
+        </div>
+        -->
         </div>
 
         <h4 class="">

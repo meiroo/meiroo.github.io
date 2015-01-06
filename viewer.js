@@ -12,6 +12,7 @@ require.config({
         'ViewerList':'controller/ViewerList',
         'FileLoader':'controller/FileLoader',
         'SingleViewer':'controller/SingleViewer',
+        'GithubAPI':'controller/GithubAPI',
 
     },
     shim: {
@@ -43,7 +44,8 @@ window.name = "NG_DEFER_BOOTSTRAP!";
 
 $(document).ready(function() {
 
-    require(['angular','angular-route','angular-sanitize','showdown','markdown','viewerApp'],function(angular,route,s,sd,md,app){
+    require(['angular','angular-route','angular-sanitize','showdown','markdown','viewerApp'],
+        function(angular,route,s,sd,md,app){
         
         var $html = angular.element(document.getElementsByTagName('html')[0]);
         angular.element().ready(function() {
