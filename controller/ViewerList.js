@@ -4,7 +4,13 @@ define(function(require, exports, module) {
     var loader = require('FileLoader');
 
 
-    
+    function getName(url){
+        var path = url;
+        if(path.match(/[^/]+$/)){
+            path = path.match(/[^/]+$/)[0];
+        }
+        return path;
+    }
     
     var controller = function($scope,Data,$location){
     	$scope.Data = Data;
@@ -15,8 +21,8 @@ define(function(require, exports, module) {
                 for(var i = 0; i< arr.length; i++){
                     var blog = arr[i];
                     vm.array.push({
-                        id:blog.name,
-                        title:blog.name,
+                        id:encodeURIComponent(blog.name),
+                        title:getName(blog.name),
                         createdAt:"2015-1-5",
                         filter:"Blog",
                         contentThumb:blog.content,

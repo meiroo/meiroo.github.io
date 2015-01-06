@@ -13,7 +13,7 @@
 
         <tr ng-repeat="blog in array">
             <td>1</td>
-            <td><a href="/viewer.html#/name/{{blog.id}}">{{blog.title}}</a></td>
+            <td><a href="/viewer.html#/name/{{blog.title}}/?id={{blog.id}}">{{blog.title}}</a></td>
             <td>{{blog.createdAt}}</td>
             <td>{{blog.filter}}</td>
         </tr>
