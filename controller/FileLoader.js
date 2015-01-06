@@ -1,8 +1,8 @@
 define(function(require, exports, module) {
 
-    var BlogLoader = {};
+    var FileLoader = {};
 
-    BlogLoader.Load= function(callback){
+    FileLoader.Load= function(callback){
         var arr = [];
 
         $.when(
@@ -19,7 +19,7 @@ define(function(require, exports, module) {
     }
     
   
-	module.exports = BlogLoader;
+	module.exports = FileLoader;
 
 	
 	

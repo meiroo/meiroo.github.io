@@ -1,11 +1,11 @@
 define(function(require, exports, module) {
 
-    var BlogList = require('BlogList');
-    var SingleBlog = require('SingleBlog');
+    var ViewerList = require('ViewerList');
+    var SingleViewer = require('SingleViewer');
 
     var angular = require('angular');
 
-    var app = angular.module("Blog", ['ngRoute','btford.markdown'], function() {
+    var app = angular.module("Viewer", ['ngRoute','btford.markdown'], function() {
     });
 
 
@@ -14,12 +14,12 @@ define(function(require, exports, module) {
 
       $routeProvider
       .when('/', {
-	    templateUrl: 'template/blogList.html',
-	    controller: 'BlogList'
+	    templateUrl: 'template/ViewerList.html',
+	    controller: 'ViewerList'
 	   })
       .when('/name/:name/', {
-	    templateUrl: 'template/singleBlog.html',
-	    controller: 'SingleBlog'
+	    templateUrl: 'template/SingleViewer.html',
+	    controller: 'SingleViewer'
 	   });
 	   
 	});
@@ -39,8 +39,8 @@ define(function(require, exports, module) {
 
 
 
-    app.controller('BlogList',BlogList);
-    app.controller('SingleBlog',SingleBlog);    
+    app.controller('ViewerList',ViewerList);
+    app.controller('SingleViewer',SingleViewer);    
 
 
 	module.exports = app;

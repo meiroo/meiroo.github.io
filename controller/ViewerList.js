@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
 
     var angular = require('angular');
-    var loader = require('BlogLoader');
+    var loader = require('FileLoader');
 
 
     

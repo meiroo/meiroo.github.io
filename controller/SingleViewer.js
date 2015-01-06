@@ -8,6 +8,8 @@ define(function(require, exports, module) {
     	var vm = $scope;
     	vm.title = "test";
 
+    	
+
 	    vm.$watchCollection('Data.url', function() {
 			vm.url = Data.url;
 	    });

@@ -1,21 +1,7 @@
-
-<!DOCTYPE html>
-<html ng-app="Blog">
-<head>
-  <title>Blogs</title>
-  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/ripples.min.css" rel="stylesheet">
-  <link href="css/material.min.css" rel="stylesheet">
-  <link href="css/project.css" rel="stylesheet">
-</head>
-<body>
-
-  <div class="container">
-    <div class="page-header" id="banner">
+<div class="page-header" id="banner">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6">
-          <h1>Blogs</h1>
+          <h1>Repository Viewer</h1>
           <p class="lead">
             by  Meiroo
             <a href="mailto:meiroo@outlook.com">Meiroo@outlook.com</a>
@@ -32,23 +18,15 @@
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
               <ul class="nav navbar-nav">
-                <li class="active">
-                  <a href="index.html">Index</a>
-                </li>
-              </ul>
-              <form class="navbar-form navbar-left">
-                <input type="text" class="form-control col-lg-8" placeholder="Search"></form>
-              <ul class="nav navbar-nav navbar-right">
-                <li>
-                  <a href="javascript:void(0)">Link</a>
-                </li>
+                
+
                 <li class="dropdown">
                   <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                    Dropdown <b class="caret"></b>
+                    File List <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="javascript:void(0)">TBD</a>
+                      <a href="javascript:void(0)">TBD 1</a>
                     </li>
                     <li>
                       <a href="javascript:void(0)">TBD 2</a>
@@ -62,29 +40,18 @@
                     </li>
                   </ul>
                 </li>
+
+              </ul>
+              <form class="navbar-form navbar-left">
+                <input type="text" class="form-control col-lg-8" placeholder="Filter"></form>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                  <a href="index.html">Back To Index</a>
+                </li>
+                
               </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div ng-view></div>
-
-  </div>
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/material.min.js"></script>
-  <script src="js/ripples.min.js"></script>
-  <script src="./js/require.js" data-main="./blog"></script>
-
-  <script>
-    $(document).ready(function() {
-        $.material.ripples();
-        $.material.input();
-        $.material.init();
-    });
-</script>
-</body>
-</html>

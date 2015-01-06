@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html ng-app="Viewer">
+<head>
+  <title>Repository Viewer</title>
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/ripples.min.css" rel="stylesheet">
+  <link href="css/material.min.css" rel="stylesheet">
+  <link href="css/project.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <div ng-include="'template/nav.html'"></div>
+
+    <div ng-view></div>
+
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/material.min.js"></script>
+  <script src="js/ripples.min.js"></script>
+  <script src="./js/require.js" data-main="./viewer"></script>
+
+  <script>
+    $(document).ready(function() {
+        $.material.ripples();
+        $.material.input();
+        $.material.init();
+    });
+</script>
+</body>
+</html>
