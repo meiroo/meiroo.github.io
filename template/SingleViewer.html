@@ -2,22 +2,30 @@
         <h2 class="text-center">{{title}}</h2>
        
         
-        <div class="panel panel-default">
-        <p btf-markdown="content"></p>
-        <!--
-         <div ng-switch on="isExists(item)">
-            <span ng-switch-when="true">Available</span>
-            <span ng-switch-default>oh no, you don't have it</span>
+        
+     
+        <div ng-show="edit">
+          <textarea ng-model="src" class="form-control empty" rows="40">
+          </textarea>
         </div>
-        -->
+          
+        <div ng-show="!edit" class="panel panel-default">
+           <p btf-markdown="content"></p>
         </div>
+
+        
+        
 
         <h4 class="">
           <p>
-            <a class="btn btn-primary btn-xs"> <i class="mdi-navigation-expand-more"></i>
-              Learn more
+          <div class="togglebutton">
+          <label style="margin-right:20px;">
+            <input type="checkbox" ng-model="edit" checked=""><span class="toggle"></span> Edit   
+          </label>
+            <a ng-click="onClick($event)" class="btn btn-primary btn-xs"> <i class="mdi-navigation-expand-more"></i>
+              Run To Console
             </a>
+          </div>
           </p>
         </h4>
       </div>
-    </div>

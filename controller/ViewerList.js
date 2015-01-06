@@ -23,6 +23,7 @@ define(function(require, exports, module) {
     	var vm = $scope;
 
         vm.search='';
+        vm.check = true;
 
         $scope.myFilter = function(item) {
            var re = new RegExp('.*'+vm.search+'.*','i'); 
