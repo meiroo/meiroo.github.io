@@ -1,21 +1,6 @@
-    <div class="jumbotron">
+    <div class="jumbotron col-lg-9 col-md-9 col-sm-9">
         <h2 class="text-center">{{title}}</h2>
        
-        
-        
-     
-        <div ng-show="edit">
-          <textarea ng-model="src" class="form-control empty" rows="40">
-          </textarea>
-        </div>
-          
-        <div ng-show="!edit" class="panel panel-default">
-           <p btf-markdown="content"></p>
-        </div>
-
-        
-        
-
         <h4 class="">
           <p>
           <div class="togglebutton">
@@ -28,4 +13,24 @@
           </div>
           </p>
         </h4>
+        
+     
+        <div ng-show="edit">
+          <textarea ng-model="src" class="form-control empty" rows="25">
+          </textarea>
+        </div>
+          
+        <div ng-show="!edit" class="panel panel-default">
+           <p btf-markdown="content"></p>
+        </div>
+
+        
+        
       </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 div-scrollable" style="height:500px;">
+        <div class="well infobox" style="background-color: #bcbcbc;">Console  <a ng-click="onClear($event)" class="btn btn-default btn-xs">Clear</a>
+            <BR>
+        <pre style="background-color: #bcbcbc;">{{console}}</pre>
+        </div>
+    </div>

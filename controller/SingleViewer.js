@@ -7,6 +7,8 @@ define(function(require, exports, module) {
     var controller = function($scope,Data,$routeParams,$location){
     	$scope.Data = Data;
     	var vm = $scope;
+        vm.title = "";
+        vm.console = "";
 
     	//console.log($routeParams);
     	//contentThumb
@@ -45,12 +47,20 @@ define(function(require, exports, module) {
         
 
         vm.onClick = function(event){
+            var console = {};
+            console.log = function(str){
+                vm.console += str + "\n";
+            }
             eval(vm.src);
         }
 
+        vm.onClear = function(event){
+            vm.console = "";
+        }
+
 	    vm.$watchCollection('edit', function() {
-			if(vm.edit){
-                vm.content= vm.src;
+			if(vm.title.match(/.*\.md/gi)){
+                vm.edit= false;
             }else{
                 vm.content= '<pre>'+vm.src+'</pre>';
             }
