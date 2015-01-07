@@ -3,6 +3,9 @@ var http = require('http'),
     url = require('url'),   
     mime = require('./mime');
     path = require('path');
+    var http=require('http');
+    var qs=require('querystring');
+ 
 
 var port = 8081;
 
@@ -44,8 +47,45 @@ function processQuery(request, response){
     var urldata = url.parse(request.url,true);
     var urlpath = urldata.pathname;
     var urlquery = urldata.query;
-    console.log(urlpath);
-    processStatic(request,response);
+    console.log(urlquery.code);
+    if(urlpath=="/AuthorizeGitHub1"){
+        var post_data={code:urlquery.code,client_id:'9b17be9d59549abec615',client_secret:'33d680936fafbe11d1b047175a5620dedaba2a64'};//这是需要提交的数据
+        var content=qs.stringify(post_data);
+
+
+        var options = {
+          host: 'github.com',
+          port: 80,
+          path: '/login/oauth/access_token',
+          method: 'POST',
+          headers:{
+          'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+          'Content-Length':content.length,
+          'Connection':'keep-alive',
+          'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp'
+          }
+        };
+        //console.log("post options:\n",options);
+        //console.log("content:",content);
+        //console.log("\n");
+         
+        var req = http.request(options, function(res) {
+          //console.log("statusCode: ", res.statusCode);
+          //console.log("headers: ", res.headers);
+          var _data='';
+          res.on('data', function(chunk){
+             _data += chunk;
+          });
+          res.on('end', function(){
+             console.log("--->>result:"+_data)
+             response.end(_data);
+           });
+        });
+        req.write(content);        
+        req.end();
+        
+    }else
+       processStatic(request,response);
    
 };
 

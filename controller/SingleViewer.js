@@ -84,6 +84,13 @@ define(function(require, exports, module) {
             vm.console = "";
         }
 
+        vm.onPublish = function(event){
+             window.open('https://github.com' + 
+        '/login/oauth/authorize' + 
+        '?client_id=9b17be9d59549abec615' +
+        '&scope=gist');
+        }
+
 	    vm.$watchCollection('edit', function() {
 			if(vm.title.match(/.*\.md/gi)){
                 vm.edit= false;

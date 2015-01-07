@@ -5,6 +5,8 @@ define(function(require, exports, module) {
     var api = require('GithubAPI');
     var repositoryData = {};
 
+    api.updateFileTest('javascript');
+
     
 
 
@@ -18,7 +20,7 @@ define(function(require, exports, module) {
         return path;
     }
     
-    var controller = function($scope,Data,$location){
+    var controller = function($scope,Data,$location,$routeParams){
     	$scope.Data = Data;
     	var vm = $scope;
 
@@ -30,6 +32,18 @@ define(function(require, exports, module) {
            var all = vm.check || item.title.match(/.*\.md/gi);
            return re.test(item.fullpath) && item.type==="blob" && all;
         };
+
+        // var url = window.location.href;
+        // var re = /code=([0-9a-zA-Z]*)/i;
+        // if(url.match(re)){
+        //     code = url.match(re)[1];
+        //     alert(code);
+        //     $.get('/AuthorizeGitHub1?code='+code, function(data) {
+        //         /*optional stuff to do after success */
+        //         alert(data);
+        //     });
+        // }
+
 
     	vm.array = [];
         /*loader.Load(function(arr){
