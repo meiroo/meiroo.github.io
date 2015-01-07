@@ -1,3 +1,7 @@
+
+      
+
+
     <div class="jumbotron col-lg-9 col-md-9 col-sm-9">
         <h2 class="text-center">{{title}}</h2>
        
@@ -13,16 +17,24 @@
           </div>
           </p>
         </h4>
+
+       
+       
+       <div ng-show="!edit" class="panel panel-default">
+         <p btf-markdown="content"></p>
+      </div>
+
+      <div id="code"></div>
+
         
      
-        <div ng-show="edit">
-          <textarea ng-model="src" class="form-control empty" rows="25">
-          </textarea>
+        <div >
+          
         </div>
           
-        <div ng-show="!edit" class="panel panel-default">
-           <p btf-markdown="content"></p>
-        </div>
+        
+
+   
 
         
         

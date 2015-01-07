@@ -9,6 +9,7 @@ define(function(require, exports, module) {
     	var vm = $scope;
         vm.title = "";
         vm.console = "";
+        var editor = null;
 
     	//console.log($routeParams);
     	//contentThumb
@@ -32,14 +33,21 @@ define(function(require, exports, module) {
 			//console.log(content);
             $scope.$apply(function(){
                 vm.title=$routeParams.name;
+
+                editor = CodeMirror(document.getElementById("code"), {
+                  value: vm.src,
+                  mode:  "javascript"
+                });
+
                 if(vm.title.match(/.*\.md/gi)){
-                	vm.content= content;
+                	vm.content= vm.src;
+                    vm.src = "";
                     vm.edit = false;
+                    $("#code").hide();
                 }else{
-                    vm.content= '<pre>'+content+'</pre>';
+                    vm.content = "";
                     vm.edit = true;
-                }
-                
+                } 
             });
 
         });
@@ -47,6 +55,9 @@ define(function(require, exports, module) {
         
 
         vm.onClick = function(event){
+            if(editor){
+                vm.src = editor.getValue();
+            }
             var console = {};
             console.log = function(str){
                 vm.console += str + "\n";
@@ -62,7 +73,7 @@ define(function(require, exports, module) {
 			if(vm.title.match(/.*\.md/gi)){
                 vm.edit= false;
             }else{
-                vm.content= '<pre>'+vm.src+'</pre>';
+                //vm.content= '<pre>'+vm.src+'</pre>';
             }
 	    });
     };
