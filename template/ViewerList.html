@@ -6,6 +6,8 @@
     <option value="javascript">javascript</option>
     <option value="m-notes">m-notes</option>
     <option value="m-soft">m-soft</option>
+    <option value="m-glxuewei">m-glxuewei</option>
+    <option value="meiroo.github.io">meiroo.github.io</option>
   </select>
 </div>
 </div>
@@ -36,7 +38,7 @@
       
 
 
-        <tr ng-repeat="blog in array |filter:myFilter| limitTo: 10 ">
+        <tr ng-repeat="blog in array |filter:myFilter| limitTo: 30 ">
             <td>{{blog.index}}</td>
             <td><a href="/viewer.html#/name/{{blog.title}}/?url={{blog.url}}">{{blog.title}}</a></td>
             <td>{{blog.fullpath}}</td>

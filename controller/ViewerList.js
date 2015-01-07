@@ -62,22 +62,23 @@ define(function(require, exports, module) {
             });
         }
 
-        if(!repositoryData['javascript']){
-            api.getFileList('javascript',function(list){
-                repositoryData['javascript'] = list;
-                $scope.$apply(function(){
-                    showlist(list);
-                    $("#dropdown-menu select").dropdown();
-                });
-            });
-        }else{
-            showlist(repositoryData['javascript']);
-        }
+        
 
         
-	    $("#dropdown-menu select").on("change",function(){
-            alert('change');
-        });
+	    vm.$watchCollection('select', function() {
+            //alert(vm.select);
+            vm.array=[];
+			if(!repositoryData[vm.select]){
+                api.getFileList(vm.select,function(list){
+                    repositoryData[vm.select] = list;
+                    $scope.$apply(function(){
+                        showlist(list);
+                    });
+                });
+            }else{
+                showlist(repositoryData[vm.select]);
+            }
+	    });
 
 	    vm.click = function(event){
 
