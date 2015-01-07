@@ -21,3 +21,7 @@ body .modal {
  .CodeMirror {
 	font-size:20px;
  }
+
+#dropdown-menu{  
+    float:right;
+}

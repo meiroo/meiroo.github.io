@@ -5,11 +5,6 @@ define(function(require, exports, module) {
     var api = require('GithubAPI');
     var repositoryData = {};
 
-    
-
-
-
-
     function getName(url){
         var path = url;
         if(path.match(/[^/]+$/)){
@@ -24,6 +19,7 @@ define(function(require, exports, module) {
 
         vm.search='';
         vm.check = true;
+        vm.select = 'javascript';
 
         $scope.myFilter = function(item) {
            var re = new RegExp('.*'+vm.search+'.*','i'); 
@@ -71,6 +67,7 @@ define(function(require, exports, module) {
                 repositoryData['javascript'] = list;
                 $scope.$apply(function(){
                     showlist(list);
+                    $("#dropdown-menu select").dropdown();
                 });
             });
         }else{
@@ -78,9 +75,9 @@ define(function(require, exports, module) {
         }
 
         
-	    vm.$watchCollection('Data.url', function() {
-			vm.url = Data.url;
-	    });
+	    $("#dropdown-menu select").on("change",function(){
+            alert('change');
+        });
 
 	    vm.click = function(event){
 
