@@ -17,3 +17,7 @@ body .modal {
 .jumbotron li{
 	font-size: 21px;
 }
+
+ .CodeMirror {
+	font-size:20px;
+ }

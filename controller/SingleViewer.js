@@ -36,8 +36,15 @@ define(function(require, exports, module) {
 
                 editor = CodeMirror(document.getElementById("code"), {
                   value: vm.src,
-                  mode:  "javascript"
+                  lineNumbers: true,
+                  mode: "javascript",
+                  keyMap: "sublime",
+                  autoCloseBrackets: true,
+                  matchBrackets: true,
+                  showCursorWhenSelecting: true,
+                  theme: "monokai"
                 });
+
 
                 if(vm.title.match(/.*\.md/gi)){
                 	vm.content= vm.src;
