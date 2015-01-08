@@ -40,8 +40,8 @@
 
         <tr ng-repeat="blog in array |filter:myFilter| limitTo: 30 ">
             <td>{{blog.index}}</td>
-            <td><a href="/viewer.html#/name/{{blog.title}}/?url={{blog.url}}">{{blog.title}}</a></td>
-            <td>{{blog.fullpath}}</td>
+            <td><a href="/viewer.html#/repo/{{select}}/path/{{blog.path}}">{{blog.title}}</a></td>
+            <td>{{blog.path}}</td>
         </tr>
         
     </tbody>

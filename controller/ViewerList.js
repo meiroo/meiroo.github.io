@@ -43,7 +43,7 @@ define(function(require, exports, module) {
             });
         });*/
 
-        console.log(vm.check);
+        //console.log(vm.check);
 
         
         //console.log(repositoryData['javascript']);
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
                         type:item.type,
                         url:encodeURIComponent(item.url),
                         title:getName(item.path),
-                        fullpath:item.path,
+                        path:item.path,
                         index:++index
                     });
 

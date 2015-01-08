@@ -13,6 +13,7 @@ define(function(require, exports, module) {
     API.getFileList = function(repo,callback){
         API.getLastestCommit(repo,function(sha){
             var url = "https://api.github.com/repos/meiroo/"+repo+"/git/trees/"+sha+"?recursive=1";
+            //console.log(url);
             $.get(url).done(function(data){
                 //console.log(data);
                 if(callback)callback(data.tree);
@@ -20,8 +21,8 @@ define(function(require, exports, module) {
         })
     }
 
-    API.getFileContent = function(url,callback){
-        $.get(url).done(function(data){
+    API.getFileContent = function(repo,path,callback){
+        $.get('https://api.github.com/repos/meiroo/'+repo+'/contents/'+path).done(function(data){
             if(callback)callback(data.content);
         });
     }

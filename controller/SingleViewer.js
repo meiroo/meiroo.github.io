@@ -25,14 +25,14 @@ define(function(require, exports, module) {
             });
         });*/
 
-		api.getFileContent($routeParams.url,function(content){
+		api.getFileContent($routeParams.repo,$routeParams.path,function(content){
 			//console.log(content);
 			// /content = window.atob(content);
 			content = decodeURIComponent(escape(window.atob(content)));
             vm.src = content;
 			//console.log(content);
             $scope.$apply(function(){
-                vm.title=$routeParams.name;
+                vm.title=$routeParams.path;
 
                 editor = CodeMirror(document.getElementById("code"), {
                   value: vm.src,
