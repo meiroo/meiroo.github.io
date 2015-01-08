@@ -73,16 +73,18 @@
                 <h2>
                     <a href="#imageserve">ImageServe : nodejs-site-image-management</a>
                 </h2>
-                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>图片基础展示管理,Policy图片处理。</h4></em> 
+                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>Image show and policy processing.</h4></em> 
                     <ul>
 
-                        <li>图片上传/删除（图片使用md5校验，相同二进制只存一份）</li>
+                        <li>
+                            Image Upload/Remove（use md5 check to avoid same content duplicated
+                        </li>
 
-                        <li>实现图片的自定义放缩,自动加水印,基于html渲染图片</li>
+                        <li>Image Policy: Thumbnail/WaterMark/Render From HTML</li>
 
-                        <li>客户端：bootstrap：aceadmin AngularJS RequireJS</li>
+                        <li>Client-side：bootstrap：aceadmin AngularJS RequireJS</li>
 
-                        <li>服务端：NodeJS Express MongoDB ImageMagick PhantomJS</li>
+                        <li>Server-side：NodeJS Express MongoDB ImageMagick PhantomJS</li>
 
                     </ul>
 
@@ -154,16 +156,18 @@
                 <h2>
                     <a href="#notes">Notes : meteor knowledge managment</a>
                 </h2>
-                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>基于Meteor全栈开发</h4></em> 
+                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>Meteor full-stack-development Based</h4></em> 
                     <ul>
 
-                        <li>功能：Notes管理，登录权限管理，文章增删查改，TAG查询，前端路由，分页，Notes导出</li>
+                        <li>
+                            Notes Management，Login，Filter，ClientSide-Routing，Pagination，Export ...
+                        </li>
 
-                        <li>样式：Bootstrap MarkDown Sublime代码样式</li>
+                        <li>Styles：Bootstrap(material-design) MarkDown Code-prettify</li>
 
-                        <li>全站缓存：可以断网环境正常使用除导出外的全部功能 网络连接后会和服务器同步</li>
+                        <li>Web-cache：CSS/HTML/JS/DB Can be used offline and auto sync</li>
 
-                        <li>功能基于客户端JS开发完成 只有导出功能使用服务端开发</li>
+                        <li>Meteor ClientSide development.</li>
 
                     </ul>
 
@@ -228,22 +232,22 @@
         <div id="3dxuewei" class="jumbotron" style="margin-top:50px;">
             <div class="row">
                 <h2>
-                    <a href="#3dxuewei">3D穴位 : android/win  c++ xuewei 3d show</a>
+                    <a href="#3dxuewei">3D XueWei : android/win  c++ xuewei 3d show</a>
                 </h2>
                 <div class="col-lg-6 col-md-6 col-sm-6">
 
                     <em>
-                        <h4>增加了任脉督脉的穴位。目前共支持14个经络共361个穴位的显示和说明。</h4>
+                        <h4>3D Show and description for 14 JINGLUO and 361 Xuewei。</h4>
                     </em>
                     <ul>
 
-                        <li>通过3D方式展示人体所有穴位、可查看3D经络连线</li>
+                        <li>3D Human body. Joint-lines between neighbor Xuewei</li>
 
-                        <li>通过不同颜色展示不同经络</li>
+                        <li>JingLuo classified by Color</li>
 
-                        <li>可动态旋转缩放人体模型，支持多点触控</li>
+                        <li>3D Move/Rotate/Scale, MultiPoint Touch</li>
 
-                        <li>选中穴位有穴位具体说明</li>
+                        <li>Description on Xuewei Click</li>
 
                     </ul>
 
@@ -324,13 +328,13 @@
                     </em>
                     <ul>
 
-                        <li>基于three.js webgl场景,canvas场景</li>
+                        <li>three.js based webgl/canvas Scene</li>
 
-                        <li>webgl数据并行计算和结果3D展示</li>
+                        <li>webgl -&gt; openCL API implement demo</li>
 
-                        <li>blender to json => HTML5平台解析并展示</li>
+                        <li>parse blender to json =&gt; HTML5 web Display</li>
 
-                        <li>canvas视频拼图,全景,photosnyth</li>
+                        <li>canvas pieces,photosnyth</li>
 
                         <li>css3 html 3d animation</li>
 
@@ -432,31 +436,33 @@
                 <div class="col-lg-6 col-md-6 col-sm-6">
 
                     <em>
-                        <h4>OpenGL学习中逐渐完善的简单渲染引擎。跨android和win平台。</h4>
+                        <h4>OpenGL Simple Render. Support android/win</h4>
                     </em>
                     <ul>
 
-                        <li>基础模块：Point,Rect,RawImage,Plane...等基础类型</li>
+                        <li>Base Math：Point,Rect,RawImage,Plane ...</li>
 
-                        <li>渲染模块：Render接口采用　ES1.1 / ES2.0 / ES3.0 / DX11 等四种方式实现</li>
+                        <li>Render：　ES1.1 / ES2.0 / ES3.0 / DX11 : Multiple implemention</li>
 
-                        <li>动画模块：实现简单的属性动画。线性插值。以及动画播放控制流程</li>
+                        <li>Animation： Linear Interpolation. Animation Controller.</li>
 
-                        <li>窗口部分：基于GLUT　基于WindowsAPI　基于Android GLSurfaceView等三种窗口实现</li>
+                        <li>Window： GLUT　/ WindowsAPI　/ Android GLSurfaceView Based</li>
 
-                        <li>模型加载：3ds简单解析模块，3ds模型动画解析模块，ply解析，blender导出动画解析模块</li>
+                        <li>Model：3ds(Model and Animation) / PLY / Blender supported</li>
+
+                        <li>Image : bmp,jpg(stb based)/ png (libpng)/ttf (freetype)</li>
 
                         <li>
-                            图片加载 : 基于stb解析bmp,jpg模块, 基于libpng解析png图片,基于freetype解析ttf字体文件模块
+                            Element：For big-amount-elements render. Makeing one draw for multi-elements
                         </li>
 
-                        <li>图元管理：添加管理多个图元，统一绘制，用于构建布线图，大批图元绘制效率优化。</li>
+                        <li>Util: Buffer Management.  VBO,PBO,FBO,UBO</li>
 
-                        <li>模型buffer:　基于属性的模型buffer管理。便于统一创建.  VBO,PBO,FBO,UBO等操作封装。</li>
+                        <li>
+                            Scene：Multiple test scenes. font/element/terrain/animation/blender etc
+                        </li>
 
-                        <li>场景：多个测试场景。文字／图片／多个图元／地形创建／3ds模型动画/ OpenCL绘制/blender场景　等等。</li>
-
-                        <li>Android：Android下文字生成纹理，GLSurfaceView Render管理等。</li>
+                        <li>Android：Android Java Module</li>
 
                     </ul>
 
