@@ -92,7 +92,9 @@ define(function(require, exports, module) {
 
         vm.$watchCollection('selectDir', function() {
             //alert(vm.select);
-            vm.search = vm.selectDir;
+            vm.search = vm.selectDir+"/";
+            if(vm.selectDir==="")
+                vm.search="";
         });
 
 	    vm.click = function(event){
