@@ -1,0 +1,213 @@
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>Q1</title>
+  
+
+</head>
+
+<!--[if lte IE 6]>
+ <script type="text/javascript" src="lib/excanvas.js"></script>
+<![endif]-->
+
+<!--[if lte IE 7]>
+ <script type="text/javascript" src="lib/excanvas.js"></script>
+<![endif]-->
+
+<!--[if lte IE 8]>
+ <script type="text/javascript" src="lib/excanvas.js"></script>
+<![endif]-->
+
+    
+
+<body>
+
+ <canvas id="canvas" width="500" height="400"></canvas>
+
+
+   <script>
+       window.onload = function () {
+           //之前没有做过类似项目，不知道原理，所以用最简单的想法实现。没有太测试。正则表达式以及部分js语法都是网络搜索的。
+
+           //input代表输入字符串
+           var input = "<b>This is a bold text.</b><l> This is a italic text.</l><p>New paragraph.</p><UL><li> Item1</li> <li> Item2 with <u>underline</u></li><UL>";
+           //var input = "test line1<u>test underline</u><p><l> This is a italic text.</l> New paragraph.</p><UL><li> <u>Item1</u></li> <li> Item2 with <l>italic</l><b>bold</b></li><UL>";
+           //var input = "aaabbbccdddfffee";
+           //var input = "<b>bbbb<l>aaaa</l>";
+           //var input = "<b>bbbb<l></b>aaaa</l>";
+           //var input = "<abcdefg>bbbb</abcdefg>";
+           //var input = "<   b>aaa</  b>"
+           //var input = "<b>bbbb<p></p><p></p><u>aaaa</u></b>";
+
+
+           //这几个tag主要影响文字的layout
+           var layout_tag = {
+               P: ["<P>", "</P>"],
+               UL: ["<UL>", "</UL>"],
+               LI: ["<LI>", "</LI>"]
+           };
+           //这几个tag主要影响文字绘制效果
+           var effect_tag = {
+               B: ["<B>", "</B>"],
+               I: ["<L>", "</L>"],
+               U: ["<U>", "</U>"]
+           };
+           //字体大小
+           var TEXTSIZE = 20;
+
+           var CanvasRender = function () {
+               var canvas = document.getElementById('canvas');
+               var context = null;
+
+               //当前光标位置记录变量           
+               var cursorx = 0;
+               var cursory = TEXTSIZE;
+
+               if (canvas.getContext) {
+                   context = canvas.getContext('2d');
+               } else
+                   return null;
+
+               //换行
+               this.gotoNextline = function () {
+                   if (cursorx > 0)
+                       cursory += TEXTSIZE; //此处很不好的判断方式，避免换行后再次换行
+                   cursorx = 0;
+               };
+               //绘制LI
+               this.beginLiDraw = function () {
+                   if (cursorx > 0)
+                       cursory += TEXTSIZE; //此处很不好的判断方式，避免换行后再次换行
+                   cursorx = TEXTSIZE / 2;
+                   this.drawText("·", TEXTSIZE + "px Arial");
+               };
+
+               //画文字接口 str文字，pattern黑体斜体等，underline
+               this.drawText = function (str, pattern, underline) {
+                   if (str.length <= 0)
+                       return;
+                   context.font = pattern;
+                   context.fillText(str, cursorx, cursory);
+                   var m = context.measureText(str);
+
+
+                   if (underline === true) {
+                       //画下划线
+                       context.beginPath();
+                       context.moveTo(cursorx, cursory);
+                       context.lineTo(cursorx + m.width, cursory);
+                       context.stroke();
+                   }
+                   cursorx += m.width;
+
+
+
+
+               }
+           };
+
+           // 业务实现类
+           var ParseAndRender = function (input, render) {
+               var urmode = false;
+               var re = /<[a-z]+>|<\/[a-z]+>/gi;
+
+               //绘制带有特殊效果，粗体斜体下划线的文字
+               var parseEffect = function (str, repattern, textformat, underline) {
+                   var a = str.match(repattern);
+                   if (!a)
+                       return 0;  //如果真走到此处有可能引起死循环，不过进函数之前有匹配
+                   render.drawText(a[1], textformat, underline);
+                   return a[0].length;
+               };
+
+
+               //开始处理input 每次绘制完毕的部分就会从input中去掉
+               while (input) {
+                   var matchstrs = input.match(re);
+                   var matchcur = null;
+                   var matchnxt = null;
+
+                   //先看目前剩下的字符串里面还有没有这样的标签<x>
+                   //如果没有直接把所有的文字都按照普通绘制,然后结束
+                   //如果有，那么保存下一个标签，和下下个标签（如果有下下个）。
+                   if (matchstrs) {
+                       if (matchstrs[0])
+                           matchcur = matchstrs[0].toUpperCase();
+                       if (matchstrs[1])
+                           matchnxt = matchstrs[1].toUpperCase();
+                   } else {
+                       render.drawText(input, TEXTSIZE + "px Arial");
+                       return;
+                   }
+
+                   //在下一个标签之前的文字，先按普通绘制。然后去掉这一部分。
+                   var strlen = input.search(re);
+                   render.drawText(input.substr(0, strlen), TEXTSIZE + "px Arial");
+                   input = input.substr(strlen);
+
+                   //去掉标签之前的文字以后，一定就是标签了。判断标签是否是能处理的那几个标签
+                   //如果是就处理，如果不是就丢弃
+                   //如果是我们能处理的标签，但是不成对，这时候也丢弃 （这个也许不是正确的处理规则）
+                   //下面必须成对的是：<b> <l> <u> 这几个标签结束之前如果嵌套了其他标签 会丢弃
+                   //如 <b> <l> </l> </b> 会导致b被丢弃
+
+
+                   if (matchcur === effect_tag.B[0] && matchnxt === effect_tag.B[1]) {
+                       var len = parseEffect(input, /<b>(.*?)<\/b>/i, "Bold " + TEXTSIZE + "px Arial"); //b标签内部文字绘制
+                       input = input.substr(len);
+                   } else if (matchcur === effect_tag.I[0] && matchnxt === effect_tag.I[1]) {
+                       var len = parseEffect(input, /<l>(.*?)<\/l>/i, "Italic " + TEXTSIZE + "px Arial");//l标签内部文字绘制
+                       input = input.substr(len);
+                   } else if (matchcur === effect_tag.U[0] && matchnxt === effect_tag.U[1]) {
+                       var len = parseEffect(input, /<u>(.*?)<\/u>/i, TEXTSIZE + "px Arial", true);//u标签内部文字绘制
+                       input = input.substr(len);
+                   }
+                       //<p> <ul> <li>可以不成对。即可以嵌套其他标签。
+
+                   else if (matchcur === layout_tag.P[0] || matchcur === layout_tag.P[1]) {
+                       render.gotoNextline();//p标签换行
+                       input = input.substr(matchcur.length);
+                   } else if (matchcur === layout_tag.UL[0]) {
+                       urmode = true;//ul标签打开list状态
+                       input = input.substr(matchcur.length);
+                   } else if (matchcur === layout_tag.UL[1]) {
+                       urmode = false;//ul标签关闭list状态
+                       input = input.substr(matchcur.length);
+                   }
+                       //在UL中，LI才能起作用。如果不在UL中，LI走到else会被丢弃。
+                   else if (matchcur === layout_tag.LI[0]) {
+                       if (urmode)
+                           render.beginLiDraw();//LI标签画list标志点
+                       input = input.substr(matchcur.length);
+                   } else {
+                       input = input.substr(matchcur.length);//其他标签直接删除不处理
+                   }
+               };
+           };
+
+
+
+
+
+           var render = new CanvasRender();
+           ParseAndRender(input, render);
+       };
+
+       
+
+
+
+
+   </script>
+ 
+
+</body>
+
+</html>
+

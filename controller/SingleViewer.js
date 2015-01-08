@@ -50,7 +50,7 @@ define(function(require, exports, module) {
                     "Esc": function(cm) {
                       if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
                     }
-      }
+                  }
                 });
 
 

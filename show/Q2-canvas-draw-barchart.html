@@ -1,0 +1,293 @@
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>Q2</title>
+  
+
+</head>
+
+<!--[if lte IE 6]>
+ <script type="text/javascript" src="lib/excanvas.js"></script>
+<![endif]-->
+
+<!--[if lte IE 7]>
+ <script type="text/javascript" src="lib/excanvas.js"></script>
+<![endif]-->
+
+<!--[if lte IE 8]>
+ <script type="text/javascript" src="lib/excanvas.js"></script>
+<![endif]-->
+
+    
+
+<body>
+
+ <canvas id="canvas" width="400" height="300" style="background-color: #FFFFFF"></canvas>
+ <canvas id="canvas1" width="400" height="300" style="background-color: #FFFFFF"></canvas>
+
+
+   <script>
+       window.onload = function () {
+           //input代表输入
+           var input = [[3, 23, 12], [34, 4, 9], [21, 7, 5], [4, 15, 23]];
+           //var input = [[3, 23, 12], [34, 4, 9], [21, 7, 5], [4, 15, 23], [50, 23, 23], [12, 12, 12]];
+           //var input = [[3, 23, 12, 40, 15, 50], [34, 14, 9, 44, 12, 50], [31, 12, 50, 7, 5, 34], [4, 15, 12, 50, 23, 43], [4, 55, 12, 50, 23, 43], [4, 15, 12, 50, 23, 4.3]];
+           //var input = [[0.03, 0.023, 0.012], [0.034, 0.004, 0.009], [0.021, 0.007, 0.005], [0.004, 0.015, 0.023]];
+           //var input = [[3, 23, 12, 40, 15, 50,12.0,100.50,34.34], [34, 14, 9, 44, 12, 50,130.3,12.4,12.7], [31, 12, 50, 7, 5, 34,12,45,54], [4, 15, 12, 50, 23, 43,56,76,12], [4, 55, 12, 50, 23, 43,12,67,87], [4, 15, 12, 50, 23, 4.3,3,25,67]];
+
+
+           //绘制矩形图使用的矩形结构
+           var Rectangle = function (r) {
+               var radio = r;
+               this.color = 'black';
+               //提供9种颜色
+               this.setColor = function (i) {
+                   this.color = (["#990099", "#999900", "#009999", "#999999", "#BB9999", "#33BB33", "#225588", "#330033", "#335500"])[i % 9];
+               };
+               this.setRect = function (centerx, centery, size) {
+                   this.startx = centerx - size / 2;
+                   this.starty = centery - size / 2;
+                   this.sizex = size;
+                   this.sizey = size * radio;
+               }
+               this.setRectFromBottom = function (centerx, maxy, sizex, sizey) {
+                   this.startx = centerx - sizex / 2;
+                   this.starty = maxy - sizey;
+                   this.sizex = sizex;
+                   this.sizey = sizey;
+               }
+           };
+
+           //绘制线框图的线结构
+           var Line = function () {
+
+               //这部分代码重复了
+               this.color = 'black';
+               this.width = 1.0;
+               this.setColor = function (i) {
+                   this.color = (["#990099", "#999900", "#009999", "#999999", "#BB9999", "#33BB33", "#225588", "#330033", "#335500"])[i % 9];
+               };
+               this.setStartPos = function (sx, sy) {
+                   this.startx = sx;
+                   this.starty = sy;
+               };
+
+               this.setNextPos = function (nx, ny) {
+                   this.nextx = nx;
+                   this.nexty = ny;
+               };
+           }
+
+           //canvas渲染器
+           var CanvasRender = function (canvasstr) {
+               var canvas = document.getElementById(canvasstr);
+               var context = null;
+
+
+               if (canvas.getContext) {
+                   context = canvas.getContext('2d');
+               } else
+                   return null;
+
+               this.width = canvas.width;
+               this.height = canvas.height;
+
+               //画线接口
+               this.drawLine = function (line) {
+                   context.beginPath();
+                   context.lineWidth = line.width;
+                   context.strokeStyle = line.color;
+                   if (line.startx && line.starty) {
+                       context.moveTo(line.startx * this.width, line.starty * this.height);
+                       context.lineTo(line.nextx * this.width, line.nexty * this.height);
+                   } else {
+                       context.moveTo(this.lastlineposx * this.width, this.lastlineposy * this.height);
+                       context.lineTo(line.nextx * this.width, line.nexty * this.height);
+                   }
+                   this.lastlineposx = line.nextx;
+                   this.lastlineposy = line.nexty;
+
+                   context.stroke();
+
+               };
+               //画矩形接口
+               this.drawRect = function (rect) {
+                   context.fillStyle = rect.color;
+                   context.fillRect(rect.startx * this.width, rect.starty * this.height, rect.sizex * this.width, rect.sizey * this.height);
+               };
+               //画文字接口
+               this.drawFont = function (str, xpos, ypos, size) {
+                   var DEFAULT_FONT_SIZE = 0.03;
+                   if (!size)
+                       size = DEFAULT_FONT_SIZE;
+                   context.font = size * this.width + "px Arial";
+                   context.textAlign = "center";
+                   context.fillStyle = 'black';
+                   context.fillText(str, xpos * this.width, ypos * this.height + size * this.width / 2);
+               };
+
+
+           };
+
+           //业务图表类
+           var MyChart = function (input) {
+               var render;
+               var numd; //number of s
+               var nums; //number of d
+               var maxyline = 0.0; //max height
+               var LINE_NUM = 6;
+
+               this.setRender = function (r) {
+                   render = r;
+               }
+
+               //计算多个数值所对应的上限  如 1，24，37  对应到40
+               //0.1 0.24 0.37 上限对应到0.4
+               //这一段感觉写的很复杂 不知道有没有简单算法一下子计算出来这个值
+               //bug风险: 目前没考虑负数。只适合正数情况
+               var calculateLayout = function () {
+                   numd = input.length;  //d1,d2,d3...dn 
+                   nums = input[0].length; //  s1,s2,s3...sn
+                   //首先获取数组里面最大的数字 maxvalue
+                   var array = [];
+                   for (var i = 0; i < numd; i++)
+                       array = array.concat(input[i]);
+                   var maxvalue = array.sort(function (x, y) { return y - x; })[0];
+
+                   //大于1或者0到1的两种情况，分别计算最大数字所对应的数量级
+                   //如 34 对应10  344 对应 100 0.233 对应0.1  0.003 对应0.001
+                   var i = 0;
+                   if (maxvalue > 1.0) {
+                       for (var i = 0; Math.pow(10, i + 1) < maxvalue; i++);
+                   } else if (maxvalue > 0.0 && maxvalue < 1.0)
+                       for (var i = 0; Math.pow(10, i) > maxvalue; i--);
+                   //根据余数的大小，再继续细分数量级到1/2的水平。如34 会细分到 5
+                   var round = ((maxvalue % Math.pow(10, i)) < Math.pow(10, i) / 2) ? Math.pow(10, i) / 2 : Math.pow(10, i);
+                   //最终计算获得上限 如最大值34 上限35 最大值37 上限40
+                   maxyline = maxvalue + round - maxvalue % round;
+               }
+
+               //画背景网格和网格刻度。网格范围定为高度的10%-70% 宽度的10%到90% 所以有0.1 0.7等魔法数字
+               var drawBackground = function () {
+                   //height scope 0.1 to 0.7
+                   for (var i = 0; i < LINE_NUM; i++) {
+                       var lineheight = 0.1 + (0.7 - 0.1) / (LINE_NUM - 1) * i;
+                       var line = new Line();
+                       line.setStartPos(0.1, lineheight);
+                       line.setNextPos(0.9, lineheight);
+                       line.width = 0.2;
+                       render.drawLine(line);
+                       var numstr = maxyline - maxyline / (LINE_NUM - 1) * i;
+                       numstr = Math.round(numstr * Math.pow(10, 3)) / Math.pow(10, 3);
+                       render.drawFont(numstr, 0.05, lineheight);
+                   }
+               }
+               //画barchart业务逻辑
+               this.drawBarChart = function () {
+                   calculateLayout();
+                   drawBackground();
+
+                   var rect = new Rectangle(render.width / render.height);
+                   //先绘制下方的文字和色块
+                   for (var j = 0; j < nums; j++) {
+                       //下方色块限定为宽度的0.25-0.75  高度在0.9
+                       var deltas = 0.5 / nums;
+                       var centers = 0.25 + deltas * j;
+                       var size = deltas * 0.3 > 0.03 ? 0.03 : deltas * 0.3;
+                       rect.setRect(centers, 0.9, size);
+                       rect.setColor(j);
+                       render.drawFont("s" + (j + 1), centers + deltas * 0.4, 0.9, size);
+                       render.drawRect(rect);
+                   }
+                   //
+                   for (var i = 0; i < numd; i++) {
+                       //barchart的矩形宽度 scope 0.2 - 0.9 
+                       var deltad = 0.7 / numd;
+                       var centerd = 0.2 + i * deltad;
+                       render.drawFont("d" + (i + 1), centerd, 0.75);
+                       for (var j = 0; j < nums; j++) {
+                           //每个矩形都以group的中心点为中心，以group的宽度的0.8为宽度。
+                           var deltas = deltad / nums;
+                           var centers = centerd + j * deltas * 0.8;
+                           rect.setRectFromBottom(centers, 0.7, deltas * 0.6, input[i][j] / maxyline * 0.6);
+                           rect.setColor(j);
+                           render.drawRect(rect);
+                       }
+                   }
+
+               }
+               //此部分思路和上面drawBarChart完全一样。
+               this.drawLineChart = function () {
+                   calculateLayout();
+                   drawBackground();
+                   var line = new Line();
+                   for (var j = 0; j < nums; j++) {
+                       //scope 0.25 - 0.75
+                       var deltas = 0.5 / nums;
+                       var centers = 0.25 + deltas * j;
+                       var size = deltas * 0.3 > 0.02 ? 0.02 : deltas * 0.3;
+                       render.drawFont("s" + (j + 1), centers + deltas * 0.4, 0.9, size);
+                       line.setColor(j);
+                       line.setStartPos(centers - deltas * 0.4, 0.9);
+                       line.setNextPos(centers + deltas * 0.4, 0.9);
+                       render.drawLine(line);
+                   }
+
+                   for (var i = 0; i < numd; i++) {
+                       //width scope 0.2 - 1.0
+                       var deltad = 0.8 / numd;
+                       var centerd = 0.2 + i * deltad;
+                       render.drawFont("d" + (i + 1), centerd, 0.75);
+                   }
+
+
+                   for (var j = 0; j < nums; j++) {
+                       line.setColor(j);
+                       line.setStartPos(0.2, 0.7 - input[0][j] / maxyline * 0.6);
+                       for (var i = 0; i < numd; i++) {
+                           //width scope 0.2 - 1.0
+                           var deltad = 0.8 / numd;
+                           var centerd = 0.2 + i * deltad;
+                           line.setNextPos(centerd, 0.7 - input[i][j] / maxyline * 0.6);
+                           render.drawLine(line);
+                           line.setStartPos(null, null);
+                       }
+                   }
+
+               }
+
+
+           };
+
+
+
+
+
+
+           //begin 两个canvas绘制 用的同一份数据input  同一个业务逻辑模块MyChart
+           var render = new CanvasRender("canvas");
+           var render1 = new CanvasRender("canvas1");
+           var chart1 = new MyChart(input);
+           chart1.setRender(render);
+           chart1.drawLineChart();
+           chart1.setRender(render1);
+           chart1.drawBarChart();
+       }
+       
+      
+           
+       
+
+   </script>
+ 
+
+</body>
+
+</html>
+

@@ -1,0 +1,354 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Q-WG</title>
+</head>  
+<body>
+
+
+   <script>
+       //error type
+       var ErrorType = {
+           UNDEFINED_PRODUCT: "Cannot find this product!",
+           UNKNOWN_FORMAT: "Unknown Format !",
+           checkError: function (str) {
+               if (str == ErrorType.UNDEFINED_PRODUCT || str == ErrorType.UNKNOWN_FORMAT)
+                   return true;
+               return false;
+           }
+       };
+
+       //testcase
+       var testcase1str =
+           "2013.11.11 | 0.7 | 电子\n" +
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "1 * 显示器 : 1799.00\n" +
+           "12 * 啤酒 : 25.00\n" +
+           "5 * 面包 : 9.00\n" +
+           "\n" +
+           "2013.11.11\n" +
+           "2014.3.2 1000 200\n";
+       var testcase1result = 3083.60;
+
+       //题目提供的有些问题，根据描述为了保持统一，应该最前面加上\n
+       var testcase2str =
+           "\n" +
+           "3 * 蔬菜 : 5.98\n" +
+           "8 * 餐巾纸 : 3.20\n" +
+           "\n" +
+           "2014.01.01\n" +
+           "\n";
+       var testcase2result = 43.54;
+
+       //testcase3
+       var testcase3str =
+           "2013.11.11 | 0.6 | 电子\n" +
+           "2013.11.11 | 0.9 | 食品\n" +
+           "2013.11.11 | 0.8 | 日用品\n" +
+           "2013.11.11 | 0.7 | 酒类\n" +
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "2 * 显示器 : 1799.00\n" +
+           "12 * 啤酒 : 25.00\n" +
+           "5 * 面包 : 9.00\n" +
+           "1 * 笔记本电脑 : 6543.00\n" +
+           "15 * 雨伞 : 44.00\n" +
+           "\n" +
+           "2013.11.11\n" +
+           "2014.3.2 1500 250\n";
+       var testcase3result = 8052.50;
+
+       //没有蔬菜叶这个商品
+       var testcase4str =
+           "\n" +
+           "3 * 蔬菜叶 : 5.98\n" +
+           "8 * 餐巾纸 : 3.20\n" +
+           "\n" +
+           "2014.01.01\n" +
+           "\n";
+       var testcase4result = ErrorType.UNDEFINED_PRODUCT;
+
+       //优惠劵时间过期
+       var testcase5str =
+           "2013.11.11 | 0.7 | 电子\n" +
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "1 * 显示器 : 1799.00\n" +
+           "12 * 啤酒 : 25.00\n" +
+           "5 * 面包 : 9.00\n" +
+           "\n" +
+           "2013.11.11\n" +
+           "2013.3.2 1000 200\n";
+       var testcase5result = 3283.60;
+
+       //折扣的format不对
+       var testcase6str =
+           "2013.11.11+ 0.7 | 电子\n" +
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "1 * 显示器 : 1799.00\n" +
+           "12 * 啤酒 : 25.00\n" +
+           "5 * 面包 : 9.00\n" +
+           "\n" +
+           "2013.11.11\n" +
+           "2013.3.2 1000 200\n";
+       var testcase6result = ErrorType.UNKNOWN_FORMAT;
+
+       //order 价格部分数字错写成了字母
+       var testcase7str =
+          "\n" +
+          "1 * ipad : 2399.00\n" +
+          "1 * 显示器 : cuowu\n" +
+          "12 * 啤酒 : 25.00\n" +
+          "5 * 面包 : 9.00\n" +
+          "\n" +
+          "2013.11.11\n" +
+          "2013.3.2 1000 200\n";
+       var testcase7result = ErrorType.UNKNOWN_FORMAT;
+
+       //折扣超出1.0
+       var testcase8str =
+           "2013.11.11 | 1.7 | 电子\n" +
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "\n" +
+           "2013.11.11\n" +
+           "\n";
+       var testcase8result = ErrorType.UNKNOWN_FORMAT;
+
+       //无优惠劵也没空行
+       var testcase9str =
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "\n" +
+           "2013.11.11\n"
+       var testcase9result = ErrorType.UNKNOWN_FORMAT;
+
+       //日期格式不对 月份大于12
+       var testcase10str =
+           "\n" +
+           "1 * ipad : 2399.00\n" +
+           "\n" +
+           "2013.15.1\n"+
+           "\n"
+       var testcase10result = ErrorType.UNKNOWN_FORMAT;
+
+
+       var testcase = [];
+       
+       testcase.push({ str: testcase1str, result: testcase1result });
+       testcase.push({ str: testcase2str, result: testcase2result });
+       testcase.push({ str: testcase3str, result: testcase3result });
+       testcase.push({ str: testcase4str, result: testcase4result });
+       testcase.push({ str: testcase5str, result: testcase5result });
+       testcase.push({ str: testcase6str, result: testcase6result });
+       testcase.push({ str: testcase7str, result: testcase7result });
+       testcase.push({ str: testcase8str, result: testcase8result });
+       testcase.push({ str: testcase9str, result: testcase9result });
+       testcase.push({ str: testcase10str, result: testcase10result });
+      
+
+
+       //category and product list
+       var categoryList = ["电子","食品","日用品","酒类"]
+       var productList = [
+           ["ipad","iphone","显示器","笔记本电脑","键盘"],
+           ["面包","饼干","蛋糕","牛肉","鱼","蔬菜"],
+           ["餐巾纸","收纳箱","咖啡杯","雨伞"],
+           ["啤酒","白酒","伏特加"]
+       ];
+
+       //product-category map for quick-search
+       //example: products["ipad"] = "电子"
+       var products = {};
+       for (var c = 0; c < categoryList.length; c++) {
+           for (var p = 0; p < productList[c].length; p++) {
+               products[productList[c][p]] = categoryList[c];
+           }
+       }
+
+       
+       
+       //折扣 re匹配折扣的format discounts折扣数组 
+       //getDiscount 根据种类获取折扣
+       var Discount = {
+           re : /^([1-2]\d{3})\.(0?[1-9]|10|11|12)\.([1-2]?[0-9]|0[1-9]|30|31)\s\|\s(0\.[0-9]+)\s\|\s(.*?)\n/,
+           discounts : [],
+           addDiscount : function(result){
+               var newDiscount = {
+                   date: {
+                       year: parseInt(result[1],10),
+                       month: parseInt(result[2],10),
+                       day: parseInt(result[3],10)
+                   },
+                   discount: parseFloat(result[4]),
+                   type: result[5]
+               };
+               Discount.discounts.push(newDiscount);
+           },
+           getDiscount: function(type) {
+               for (var i = 0; i < Discount.discounts.length; i++) {
+                   var p = Discount.discounts[i];
+                   if (p.type == type && SaleDate.matchDiscount(p.date)) {
+                       return p.discount;
+                   }
+               }
+               return 1.0;
+           }
+       }
+
+       //re匹配单个物品订单format，orders存储全部订单
+       var Order = {
+           re : /^([1-9]\d*)\s*\*\s*(.*?)\s*:\s*([1-9]\d*\.*\d*)\n/,       
+           orders: [],
+           addOrder: function (result) {
+               var newOrder = {
+                   cnt: parseInt(result[1], 10),
+                   product: result[2],
+                   price: parseFloat(result[3])
+               };
+               Order.orders.push(newOrder);
+           }
+       };
+
+       //re匹配结算日期format，date存储结算日期
+       var SaleDate = {
+           re: /^([1-2]\d{3})\.(0?[1-9]|10|11|12)\.([1-2]?[0-9]|0[1-9]|30|31)\n/,
+           date: null,
+           parseDate: function (result) {
+               var newDate = {
+                   year: parseInt(result[1], 10),
+                   month: parseInt(result[2], 10),
+                   day: parseInt(result[3], 10)
+               };
+               SaleDate.date = newDate;
+           },
+           matchDiscount: function (d) {
+               if (SaleDate.date.year === d.year && SaleDate.date.month === d.month && SaleDate.date.day === d.day) {
+                   return true;               
+               }
+               return false;
+           },
+           matchCoupon: function (d) {
+               if (d.year > SaleDate.date.year)
+                   return true;
+               else if (d.year === SaleDate.date.year && d.month > SaleDate.date.month)
+                   return true;
+               else if (d.year === SaleDate.date.year && d.month === SaleDate.date.month && d.day >= SaleDate.date.day)
+                   return true;
+               return false;
+           }
+
+       };
+
+       //re匹配结算优惠券format，date存储结算日期
+       var Coupon = {
+           re : /^([1-2]\d{3})\.(0?[1-9]|10|11|12)\.([1-2]?[0-9]|0[1-9]|30|31)\s([1-9]\d*)\s([1-9]\d*)\n/,
+           coupon: null,
+           parseCoupon: function (result) {
+               var newCoupon = {
+                   date: {
+                       year: parseInt(result[1], 10),
+                       month: parseInt(result[2], 10),
+                       day: parseInt(result[3], 10)
+                   },
+                   c1: parseFloat(result[4]),
+                   c2: parseFloat(result[5])
+               };
+               Coupon.coupon = newCoupon;
+           }
+       };
+
+       
+       //使用正则表达式转化str为特定业务对象
+       //maxnum代表最大业务对象的数目
+       var parseString = function (str, re, toObj, maxnum) {
+           var index = 0;
+           while (index<maxnum || maxnum === -1) {
+               var c = str.charAt(0);
+               if (str.charAt(0) === "\n") { 
+                   str = str.substr(1);
+                   break;
+               }
+               var result = str.match(re);
+               var resultlen = 0;
+               if (!result) {
+                   return ErrorType.UNKNOWN_FORMAT;
+               } else {
+                   resultlen = result[0].length;
+                   toObj(result);
+                   str = str.substr(resultlen);
+                   index++;
+               }
+           }
+           return str;
+       }
+
+       
+
+       var calculatePrice = function (str) {
+
+           Discount.discounts = [];
+           Order.orders = [];
+           SaleDate.date = null;
+           Coupon.coupon = null;
+
+           //先解析折扣信息，然后是订单信息，再次结算日期和优惠券
+           //依次转化为业务对象
+           str = parseString(str, Discount.re, Discount.addDiscount, -1);
+           if (ErrorType.checkError(str))
+               return str;
+           str = parseString(str, Order.re, Order.addOrder, -1);
+           if (ErrorType.checkError(str))
+               return str;
+           str = parseString(str, SaleDate.re, SaleDate.parseDate, 1);
+           if (ErrorType.checkError(str))
+               return str;
+           str = parseString(str, Coupon.re, Coupon.parseCoupon, 1);
+           if (ErrorType.checkError(str))
+               return str;
+
+           var price = 0.0;
+           //计算订单金额，加成折扣
+           for (var i = 0; i < Order.orders.length; i++) {
+               var o = Order.orders[i];
+               var cat = products[o.product];
+               if (!cat) {
+                   return ErrorType.UNDEFINED_PRODUCT;
+               }
+               var discount = Discount.getDiscount(cat);
+               price += o.price * o.cnt * discount;
+           }
+           //最后使用优惠券
+           if (Coupon.coupon && SaleDate.matchCoupon(Coupon.coupon.date)) {
+               if (price > Coupon.coupon.c1)
+                   price -= Coupon.coupon.c2;
+           };
+           var finalPrice = price.toFixed(2);
+           return finalPrice;
+       }
+       
+       //使用多个测试用例，验证
+       var errornum = 0;
+       for (var i = 0; i < testcase.length; i++) {
+           var r = calculatePrice(testcase[i].str);
+           if (r != testcase[i].result) {
+               alert("testcase" + (i + 1) + " not passed!");
+               errornum++;
+           };
+       }
+       if (errornum === 0)
+           alert("testcase all pased!");
+
+       
+
+   </script>
+ 
+
+</body>
+
+</html>
+
