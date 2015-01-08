@@ -20,11 +20,16 @@ define(function(require, exports, module) {
         vm.search='';
         vm.check = true;
         vm.select = 'javascript';
+        vm.selectDir = '';
 
-        $scope.myFilter = function(item) {
+        $scope.file = function(item) {
            var re = new RegExp('.*'+vm.search+'.*','i'); 
            var all = vm.check || item.title.match(/.*\.md/gi);
-           return re.test(item.fullpath) && item.type==="blob" && all;
+           return re.test(item.path) && item.type==="blob" && all;
+        };
+
+        $scope.dir = function(item) {
+           return item.type!=="blob";
         };
 
     	vm.array = [];
@@ -79,6 +84,11 @@ define(function(require, exports, module) {
                 showlist(repositoryData[vm.select]);
             }
 	    });
+
+        vm.$watchCollection('selectDir', function() {
+            //alert(vm.select);
+            vm.search = vm.selectDir;
+        });
 
 	    vm.click = function(event){
 
