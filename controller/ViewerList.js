@@ -13,14 +13,13 @@ define(function(require, exports, module) {
         return path;
     }
     
-    var controller = function($scope,Data,$location){
+    var controller = function($scope,Data,$routeParams,$location){
     	$scope.Data = Data;
     	var vm = $scope;
 
-        vm.search='';
         vm.check = true;
-        vm.select = 'javascript';
         vm.selectDir = '';
+        vm.select = $routeParams.repo;
 
         $scope.file = function(item) {
            var re = new RegExp('.*'+vm.search+'.*','i'); 
@@ -73,6 +72,12 @@ define(function(require, exports, module) {
 	    vm.$watchCollection('select', function() {
             //alert(vm.select);
             vm.array=[];
+            vm.search = "";
+            if(!vm.select){
+                vm.select = "javascript";
+            }
+            if($location.path() != '/repo/'+vm.select+'/');
+                $location.path('/repo/'+vm.select+'/');
 			if(!repositoryData[vm.select]){
                 api.getFileList(vm.select,function(list){
                     repositoryData[vm.select] = list;

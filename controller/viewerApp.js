@@ -17,6 +17,10 @@ define(function(require, exports, module) {
 	    templateUrl: 'template/ViewerList.html',
 	    controller: 'ViewerList'
 	   })
+      .when('/repo/:repo/', {
+	    templateUrl: 'template/ViewerList.html',
+	    controller: 'ViewerList'
+	   })
       .when('/repo/:repo/path/:path*', {
 	    templateUrl: 'template/SingleViewer.html',
 	    controller: 'SingleViewer'
