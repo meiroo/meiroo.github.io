@@ -28,6 +28,7 @@ define(function(require, exports, module) {
     }
 
     API.WriteFile = function(repo,path,content,password,callback){
+        console.log(content);
 
         $.ajax({
             url: 'http://meiroo.duapp.com/api/github/write',
@@ -35,7 +36,6 @@ define(function(require, exports, module) {
             dataType: 'jsonp',
             crossDomain: true,  
             jsonp: 'jsoncallback',
-            timeout:50000,
             data: {
                 repo: repo,
                 path: path,
