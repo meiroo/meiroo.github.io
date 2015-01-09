@@ -26,6 +26,36 @@ define(function(require, exports, module) {
             if(callback)callback(data.content);
         });
     }
+
+    API.WriteFile = function(repo,path,content,password,callback){
+
+        $.ajax({
+            url: 'http://meiroo.duapp.com/api/github/write',
+            type: 'GET',
+            dataType: 'jsonp',
+            crossDomain: true,  
+            jsonp: 'jsoncallback',
+            timeout:50000,
+            data: {
+                repo: repo,
+                path: path,
+                content:encodeURIComponent(content),
+                password:password,
+                commitlog:'Commit From Repository Viewer : api v3'
+            },
+        })
+        .done(function(data) {
+            console.log(data);
+            if(callback)callback(null,data);
+        })
+        .fail(function(err,err2) {
+            if(callback)callback(err2,null);
+        })
+        .always(function() {
+            console.log("complete");
+        });
+        
+    }
   
 	module.exports = API;
 

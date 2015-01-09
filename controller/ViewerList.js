@@ -5,6 +5,7 @@ define(function(require, exports, module) {
     var api = require('GithubAPI');
     var repositoryData = {};
 
+
     function getName(url){
         var path = url;
         if(path.match(/[^/]+$/)){

@@ -10,6 +10,7 @@ define(function(require, exports, module) {
         vm.title = "";
         vm.console = "";
         var editor = null;
+        vm.submitText='Submit To Github';
 
     	//console.log($routeParams);
     	//contentThumb
@@ -66,6 +67,24 @@ define(function(require, exports, module) {
             });
 
         });
+
+        vm.onSubmitDialog = function(event){
+            $('#complete-dialog').modal();             
+        }
+
+        vm.onSubmit = function(event){
+            if(editor){
+                vm.src = editor.getValue();
+                api.WriteFile($routeParams.repo,$routeParams.path,vm.src,vm.password,function(err,data){
+                  $scope.$apply(function(){
+                    if(!err)
+                        vm.submitText='Submit Success';
+                    else
+                        vm.submitText='Submit Error';
+                  });
+                });
+            }
+        }
 
         
 

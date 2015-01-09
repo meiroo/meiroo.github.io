@@ -1,6 +1,21 @@
 
       
-
+  <div id="complete-dialog" class="modal fade" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Authentication</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-control-wrapper"><input ng-model="password" class="form-control empty" id="focusedInput" type="password" data-hint="Please confirm the password"><div class="hint">Please confirm the password</div><div class="floating-label">Password</div><span class="material-input"></span></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="onSubmit($event)" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <div class="jumbotron col-lg-9 col-md-9 col-sm-9">
         <h2 class="text-center">{{title}}</h2>
@@ -14,12 +29,20 @@
             <a ng-click="onClick($event)" class="btn btn-primary btn-xs"> <i class="mdi-navigation-expand-more"></i>
               Run To Console
             </a>
+            <label class="text-right">
+            <a ng-click="onSubmitDialog($event)" class="btn btn-primary btn-xs btn-material-deep-orange">
+              {{submitText}}
+            </a>
+            </label>
+
           </div>
           </p>
         </h4>
         <h5>
           <em>Hint : </em>Press <b>F11</b> in EditArea can toggle FullScreen Mode.
         </h5>
+
+        <button type="button" class="btn btn-default" data-content="This is a snackbar! Lorem lipsum dolor sit amet..." data-toggle="snackbar" data-timeout="0">Show snackbar</button>
 
        
        
