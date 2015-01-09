@@ -46,14 +46,8 @@ define(function(require, exports, module) {
         })
         .done(function(data) {
             console.log(data);
-            if(callback)callback(null,data);
+            if(callback)callback(data.err,data);
         })
-        .fail(function(err,err2) {
-            if(callback)callback(err2,null);
-        })
-        .always(function() {
-            console.log("complete");
-        });
         
     }
   

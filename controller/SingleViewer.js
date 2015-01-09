@@ -74,6 +74,7 @@ define(function(require, exports, module) {
 
         vm.onSubmit = function(event){
             if(editor){
+                vm.submitText='Submit ...';
                 vm.src = editor.getValue();
                 api.WriteFile($routeParams.repo,$routeParams.path,vm.src,vm.password,function(err,data){
                   $scope.$apply(function(){
