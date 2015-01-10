@@ -3,6 +3,8 @@ define(function(require, exports, module) {
     var angular = require('angular');
     var loader = require('FileLoader');
     var api = require('GithubAPI');
+    var base64 = require('base64');
+
 
     var controller = function($scope,Data,$routeParams,$location){
     	$scope.Data = Data;
@@ -29,7 +31,8 @@ define(function(require, exports, module) {
 		api.getFileContent($routeParams.repo,$routeParams.path,function(content){
 			//console.log(content);
 			// /content = window.atob(content);
-			content = decodeURIComponent(escape(window.atob(content)));
+
+			content = base64.decode(content);
             vm.src = content;
 			//console.log(content);
             $scope.$apply(function(){
