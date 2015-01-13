@@ -4,16 +4,15 @@ function Page(str){
 	var pan = 0;
 	
 
-	// this.hammertime.on('swipeleft', function(ev) {
-	// 	alert('swipeleft');
-	//    pan -= 320;
-	//    TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
-	// });
+	this.hammertime.on('swipeleft', function(ev) {
+	   pan -= 320;
+	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
+	});
 
-	// this.hammertime.on('swiperight', function(ev) {
-	// 	pan += 320;
-	//    TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
-	// });
+	this.hammertime.on('swiperight', function(ev) {
+		pan += 320;
+	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
+	});
 
 	this.showAni = function(){
 		this.ele.show();
@@ -52,18 +51,12 @@ function Scene(){
 		
 		$('#main').hammer({enable: true, direction: Hammer.DIRECTION_ALL }).bind("swipeup", function(ev) {
 		   ev.preventDefault();
-		   alert('swipeup');
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		currentindex = ++currentindex % 3;
 		   		pages[currentindex].showAni();
 		   });
 		   
-		});
-
-		$('#main').hammer({enable: true, direction: Hammer.DIRECTION_ALL }).bind("swipeleft", function(ev) {
-		   ev.preventDefault();
-		   alert('swipeleft');		   
 		});
 
 
