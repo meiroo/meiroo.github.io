@@ -10,7 +10,7 @@ body{
 	position: relative;
 	overflow: visible;
 
-	touch-action: pan-y;
+	touch-action: none;
 	-webkit-user-select: none;
 	-webkit-user-drag: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"
