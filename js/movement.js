@@ -5,6 +5,7 @@ function Page(str){
 	
 
 	this.hammertime.on('swipeleft', function(ev) {
+		alert('swipeleft');
 	   pan -= 320;
 	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
 	});
@@ -47,6 +48,7 @@ function Scene(){
 
 		this.hammertime = new Hammer(document.getElementById('main'));
 		this.hammertime.on('swipeup', function(ev) {
+			alert('swipeup');
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		currentindex = ++currentindex % 3;
