@@ -6,14 +6,12 @@ function Page(str){
 
 	this.hammertime.on('swipeleft', function(ev) {
 	   pan -= 320;
-	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.3);
-	   console.log(pan);
+	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
 	});
 
 	this.hammertime.on('swiperight', function(ev) {
 		pan += 320;
 	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
-		console.log(pan);
 	});
 
 	this.showAni = function(){
