@@ -45,8 +45,10 @@ function Scene(){
 		pages[currentindex].showAni();
 
 
+
+
 		this.hammertime = new Hammer(document.getElementById('main'));
-		this.hammertime.on('panup', function(ev) {
+		this.hammertime.on('swipeup', function(ev) {
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		currentindex = ++currentindex % 3;
@@ -54,10 +56,11 @@ function Scene(){
 		   });
 		   
 		});
+		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 
 		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
 		this.songzhufu.on('tap', function(ev) {
-			self.hammertime.off('panup');
+			self.hammertime.off('swipeup');
 			pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		new Page('page4').showAni();
