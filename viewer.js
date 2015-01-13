@@ -8,6 +8,7 @@ require.config({
         "angular-sanitize":"js/angular-sanitize",
         "showdown":"js/showdown",
         "markdown":"js/markdown",
+        "base64":"js/base64",
         "viewerApp":'controller/viewerApp',
         'ViewerList':'controller/ViewerList',
         'FileLoader':'controller/FileLoader',
@@ -34,7 +35,7 @@ require.config({
         "markdown":{
             exports:"markdown",
             deps: ["angular"]
-        },
+        }
       
 
     }
