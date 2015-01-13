@@ -4,16 +4,16 @@ function Page(str){
 	var pan = 0;
 	
 
-	this.hammertime.on('swipeleft', function(ev) {
-		alert('swipeleft');
-	   pan -= 320;
-	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
-	});
+	// this.hammertime.on('swipeleft', function(ev) {
+	// 	alert('swipeleft');
+	//    pan -= 320;
+	//    TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
+	// });
 
-	this.hammertime.on('swiperight', function(ev) {
-		pan += 320;
-	   TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
-	});
+	// this.hammertime.on('swiperight', function(ev) {
+	// 	pan += 320;
+	//    TweenMax.staggerTo("#"+str+" .imglist img", 1, {x:pan}, 0.0);
+	// });
 
 	this.showAni = function(){
 		this.ele.show();
@@ -47,6 +47,8 @@ function Scene(){
 
 
 		this.hammertime = new Hammer(document.getElementById('main'));
+
+		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 		this.hammertime.on('swipeup', function(ev) {
 			alert('swipeup');
 		   pages[currentindex].hideAni(function(){
@@ -56,7 +58,10 @@ function Scene(){
 		   });
 		   
 		});
-		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
+		this.hammertime.on('swipeleft', function(ev) {
+			alert('swipeleft');
+		   
+		});
 
 		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
 		this.songzhufu.on('tap', function(ev) {
