@@ -1,0 +1,30 @@
+body{
+	background:#f6cd5f;
+}
+
+#content{
+	width: 640px;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+
+	touch-action: pan-y;
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"
+}
+
+.pure-img{
+	margin:0 auto;
+}
+
+.moveable{
+	white-space: nowrap; 
+	text-overflow: ellipsis; 
+	overflow: hidden;
+}
+
+.moveimg{
+	margin-left: 40px;
+}
