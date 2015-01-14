@@ -19,5 +19,10 @@ var browser={
 }
 
 $(function() {
+	//alert(document.body.clientHeight);
+	//alert(window.screen.height);
+	var height = window.screen.height;
 	$('#page1 .pure-img').addClass("hatch");
+	//$('.page').width(height/16*9);
+	//$('.page').width(800);
 });
