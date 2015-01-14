@@ -20,9 +20,31 @@ var browser={
 
 $(function() {
 	//alert(document.body.clientHeight);
-	//alert(window.screen.height);
+	//alert(window.screen.width);
 	var height = window.screen.height;
 	$('#page1 .pure-img').addClass("hatch");
 	//$('.page').width(height/16*9);
 	//$('.page').width(800);
+	//transform: scale(0.47808764940239);
+	//alert($('.page').css('width'));
+	var scale = 1.0;
+	var yscale = 1.0;
+	var xoff = 0;
+	var yoff = 0;
+	if(window.screen.width < 640){
+		scale = window.screen.width / 640.0;
+		
+		
+	}
+
+	if(window.screen.height < 1012){
+		yscale = window.screen.height / 1012.0;
+	}
+
+	alert(window.screen.width + ' ' + window.screen.height);
+	if(scale > yscale)
+		scale = yscale;
+	yoff = (1 - scale) / 2 * 1012;
+	xoff = (1 - scale) / 2 * 640;
+	$('.page').css('transform','scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)');
 });
