@@ -45,11 +45,9 @@ function Scene(){
 		var currentindex = 0;
 		pages[currentindex].showAni();
 
-
-
-
-		
-		$('body').hammer({direction: Hammer.DIRECTION_ALL }).bind("panup swipeup", function(ev) {
+	
+		$('body').hammer({direction: Hammer.DIRECTION_ALL }).bind("swipeup", function(ev) {
+			alert('up');
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
@@ -59,7 +57,6 @@ function Scene(){
 		   
 		});
 
-
 		$('body').hammer().bind("swipeleft", function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].swipeleft();
@@ -68,6 +65,9 @@ function Scene(){
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
+
+		$('body').data("hammer").get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
+
 
 
 		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
