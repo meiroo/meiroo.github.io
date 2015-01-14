@@ -19,13 +19,16 @@
         }
     </script>
     <!--移动端版本兼容 end -->
-
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/hammer.min.js"></script>
     <script src="js/jquery.hammer.js"></script>
+    <script src="js/EasePack.min.js"></script>
     <script src="js/tweenmax.min.js"></script>
-    <script src="js/movement.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/idangerous.swiper.min.js"></script>
+    <script src="js/main.js"></script>
 
 </head>
 <body>
@@ -35,9 +38,11 @@
     </header>
     <div class="grid-item medium-one-third large-one-sixth text-center small-caps">ISLAND</div>
 
-    <div id="main">
-        <div class="page wrapper " id="page1">
-            <div class="grid grid-gutter-half">
+    <div id="main" class="swiper-container">
+      <div class="swiper-wrapper">
+      <div class="pagination">adsfafaf</div>
+        <div class="swiper-slide page wrapper " id="page1">
+            <div class=" grid grid-gutter-half">
                 <div class="grid-item medium-one_whole large-two-fifths">
                     <p>content content content content content</p>
                 </div>
@@ -66,7 +71,7 @@
 
         </div>
 
-        <div class="page wrapper" id="page2">
+        <div class="swiper-slide page wrapper" id="page2">
             <div class="grid grid-gutter-half">
                 <div class="grid-item medium-one-fifth large-one-fifth"></div>
                 <div class="grid-item medium-one-fifth large-one-fifth">
@@ -95,7 +100,7 @@
 
         </div>
 
-        <div class="page wrapper" id="page3">
+        <div class="swiper-slide page wrapper" id="page3">
             <div class="grid grid-gutter-half">
                 <div class="grid-item medium-one-fifth large-one-fifth"></div>
                 <div class="grid-item medium-one-fifth large-one-fifth">
@@ -124,7 +129,7 @@
 
         </div>
 
-        <div class="page wrapper" id="page4">
+        <div class="swiper-slide page wrapper" id="page4">
 
             <p>
                 <button style="height:200px;" class="button button-block one-whole button-primary">上传一张照片</button>
@@ -136,7 +141,16 @@
             </form>
 
         </div>
+       </div>
 
     </div>
+
+    <script>
+      var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        paginationClickable: true,
+        mode: 'vertical'
+      })
+  </script>
 </body>
 </html>
