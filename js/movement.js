@@ -77,9 +77,9 @@ function Scene(){
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
-		alert(navigator.userAgent);
-		alert(navigator.userAgent.indexOf('Windows Phone'));
-		alert(browser.versions.wp);
+		//alert(navigator.userAgent);
+		//alert(navigator.userAgent.indexOf('Windows Phone'));
+		//alert(browser.versions.wp);
 		if(browser.versions.wp){
 			//WP8
 			bindEvent = 'panup';
