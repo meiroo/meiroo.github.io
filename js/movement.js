@@ -48,11 +48,8 @@ function Scene(){
 
 
 
-		//this.hammertime = new Hammer(document.getElementById('main'));
-		//this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 		
-		$('body').hammer({enable: true, direction: Hammer.DIRECTION_ALL }).bind("swipeup", function(ev) {
-			alert('up');
+		$('body').hammer({direction: Hammer.DIRECTION_ALL }).bind("panup swipeup", function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
@@ -62,13 +59,12 @@ function Scene(){
 		   
 		});
 
+
 		$('body').hammer().bind("swipeleft", function(ev) {
-			alert('left');
 		   ev.preventDefault();
 		   pages[currentindex].swipeleft();
 		});
 		$('body').hammer().bind("swiperight", function(ev) {
-			alert('right');
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
