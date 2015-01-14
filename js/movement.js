@@ -103,7 +103,7 @@ function Scene(){
 
 		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
 		this.songzhufu.on('tap', function(ev) {
-			self.hammertime.off('swipeup');
+			$('body').hammer().off('swipeup panup'); 
 			pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
 		   		new Page('page4').showAni();
