@@ -16,7 +16,7 @@ function Page(str){
 
 	this.showAni = function(){
 		this.ele.show();
-		TweenMax.fromTo("#"+str, 1, {rotation:30,y:0},{rotation:0, y:-300});
+		TweenMax.fromTo("#"+str, 1, {rotation:30,y:300},{rotation:0, y:0});
 		TweenMax.fromTo("#"+str+" .pure-img", 1, {rotation:0},{rotation:360,repeat:-1,repeatDelay:0.5,ease:Back.easeOut});
 		TweenMax.fromTo("#"+str+" .pure-u-1-3", 1, {scale:0},{scale:1,ease:Bounce.easeOut});
 		
@@ -68,7 +68,7 @@ function Scene(){
 		   		new Page('page4').showAni();
 		   });
 		});
-		$('.pure-form').submit(function(event) {
+		$('.hongbao-form').submit(function(event) {
 			event.preventDefault();
 			alert('submit!');
 		})
