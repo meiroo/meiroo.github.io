@@ -48,10 +48,10 @@ function Scene(){
 
 
 
-		this.hammertime = new Hammer(document.getElementById('main'));
-		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
+		//this.hammertime = new Hammer(document.getElementById('main'));
+		//this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 		
-		$('body').hammer().bind("swipeup", function(ev) {
+		$('body').hammer({enable: true, direction: Hammer.DIRECTION_ALL }).bind("swipeup", function(ev) {
 			alert('up');
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
