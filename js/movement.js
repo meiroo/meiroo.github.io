@@ -52,6 +52,7 @@ function Scene(){
 		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 		
 		$('body').hammer().bind("swipeup", function(ev) {
+			alert('up');
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
@@ -62,10 +63,12 @@ function Scene(){
 		});
 
 		$('body').hammer().bind("swipeleft", function(ev) {
+			alert('left');
 		   ev.preventDefault();
 		   pages[currentindex].swipeleft();
 		});
 		$('body').hammer().bind("swiperight", function(ev) {
+			alert('right');
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
