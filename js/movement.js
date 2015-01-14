@@ -47,7 +47,6 @@ function Scene(){
 
 	
 		$('body').hammer({direction: Hammer.DIRECTION_ALL }).bind("panup swipeup", function(ev) {
-			alert('up');
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
