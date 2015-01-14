@@ -10,6 +10,7 @@ var browser={
             ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
             android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
             iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+            wp : u.indexOf('Windows Phone') > -1,
             iPad: u.indexOf('iPad') > -1, //是否iPad
             webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
         };
@@ -77,9 +78,8 @@ function Scene(){
 		   pages[currentindex].swiperight();
 		});
 
-		alert(navigator.userAgent);
 
-		if(browser.versions.trident && browser.versions.mobile){
+		if(browser.wp){
 			//WP8
 			bindEvent = 'panup';
 		}else{
