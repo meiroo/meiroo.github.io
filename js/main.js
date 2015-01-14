@@ -41,7 +41,7 @@ $(function() {
 		yscale = window.screen.height / 1012.0;
 	}
 
-	alert(window.screen.width + ' ' + window.screen.height);
+	//alert(window.screen.width + ' ' + window.screen.height);
 	if(scale > yscale)
 		scale = yscale;
 	yoff = (1 - scale) / 2 * 1012;
