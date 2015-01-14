@@ -19,6 +19,15 @@ var browser={
 }
 
 $(function() {
+	var mySwiper = new Swiper('.swiper-container',{
+        //pagination: '.pagination',
+        paginationClickable: true,
+        mode: 'vertical',
+        calculateHeight: true,
+        speed:750, 
+        cssWidthAndHeight:true,
+      });
+
 	//alert(document.body.clientHeight);
 	//alert(window.screen.width);
 	var height = window.screen.height;
