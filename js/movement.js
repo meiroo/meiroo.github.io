@@ -77,6 +77,7 @@ function Scene(){
 		   pages[currentindex].swiperight();
 		});
 
+		alert(browser.versions.mobile);
 		if(browser.versions.trident && browser.versions.mobile){
 			//WP8
 			bindEvent = 'panup';
