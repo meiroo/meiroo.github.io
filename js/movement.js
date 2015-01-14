@@ -65,9 +65,12 @@ function Scene(){
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
+		if(browser.versions.trident){
 
-		$('body').data("hammer").get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
-
+		}else{
+			$('body').data("hammer").get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
+		}
+		
 
 
 		this.songzhufu = new Hammer(document.getElementById('songzhufu'));
@@ -109,8 +112,6 @@ $(document).ready(function() {
          }(),
          language:(navigator.browserLanguage || navigator.language).toLowerCase()
 	}
-	alert(browser.versions.android);
-	alert(browser.versions.trident);
 
 	var mm = new Scene();
 	mm.init();
