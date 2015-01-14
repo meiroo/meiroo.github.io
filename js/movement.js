@@ -79,7 +79,7 @@ function Scene(){
 		});
 
 
-		if(browser.wp){
+		if(browser.versions.wp){
 			//WP8
 			bindEvent = 'panup';
 		}else{
