@@ -4,15 +4,17 @@ function Page(str){
 	
 
 	this.swipeleft =  function(ev) {
+	   if(TweenMax.isTweening("#"+str+" .imglist img"))return;
 	   pan -= 320;
 	   console.log(pan);
 	   TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
 	}
 
 	this.swiperight = function(ev) {
+		if(TweenMax.isTweening("#"+str+" .imglist img"))return;
 		pan += 320;
 		console.log(pan);
-	   TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
+	    TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
 	}
 
 	this.showAni = function(){
@@ -49,7 +51,7 @@ function Scene(){
 		this.hammertime = new Hammer(document.getElementById('main'));
 		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 		
-		$('body').hammer().bind("swipeup panup", function(ev) {
+		$('body').hammer().bind("swipeup", function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
@@ -59,11 +61,11 @@ function Scene(){
 		   
 		});
 
-		$('.moveimg').hammer().bind("swipeleft", function(ev) {
+		$('body').hammer().bind("swipeleft", function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].swipeleft();
 		});
-		$('.moveimg').hammer().bind("swiperight", function(ev) {
+		$('body').hammer().bind("swiperight", function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].swiperight();
 		});
