@@ -65,8 +65,26 @@ function Scene(){
 		var currentindex = 0;
 		pages[currentindex].showAni();
 
+		var bindEvent = 'swipeup';
 	
-		$('body').hammer().bind("panup swipeup", function(ev) {
+		
+		$('body').hammer().bind("swipeleft", function(ev) {
+		   ev.preventDefault();
+		   pages[currentindex].swipeleft();
+		});
+		$('body').hammer().bind("swiperight", function(ev) {
+		   ev.preventDefault();
+		   pages[currentindex].swiperight();
+		});
+
+		if(browser.versions.trident && browser.versions.mobile){
+			//WP8
+			bindEvent = 'panup';
+		}else{
+			$('body').data("hammer").get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
+		}
+
+		$('body').hammer().bind(bindEvent, function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
@@ -76,19 +94,7 @@ function Scene(){
 		   
 		});
 
-		$('body').hammer().bind("swipeleft", function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].swipeleft();
-		});
-		$('body').hammer().bind("swiperight", function(ev) {
-		   ev.preventDefault();
-		   pages[currentindex].swiperight();
-		});
-		if(browser.versions.trident){
 
-		}else{
-			$('body').data("hammer").get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
-		}
 		
 
 
