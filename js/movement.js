@@ -1,18 +1,19 @@
 function Page(str){
 	this.ele = $('#'+str);
-	this.hammertime = new Hammer(document.getElementById(str));
 	var pan = 0;
 	
 
-	this.hammertime.on('swipeleft', function(ev) {
+	this.swipeleft =  function(ev) {
 	   pan -= 320;
+	   console.log(pan);
 	   TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
-	});
+	}
 
-	this.hammertime.on('swiperight', function(ev) {
+	this.swiperight = function(ev) {
 		pan += 320;
+		console.log(pan);
 	   TweenMax.staggerTo("#"+str+" .imglist img", 0.5, {x:pan}, 0.0);
-	});
+	}
 
 	this.showAni = function(){
 		this.ele.show();
@@ -46,10 +47,9 @@ function Scene(){
 
 
 		this.hammertime = new Hammer(document.getElementById('main'));
-
 		this.hammertime.get('swipe').set({enable: true, direction: Hammer.DIRECTION_ALL });
 		
-		$('#main').hammer({enable: true, direction: Hammer.DIRECTION_ALL }).bind("swipeup", function(ev) {
+		$('body').hammer().bind("swipeup panup", function(ev) {
 		   ev.preventDefault();
 		   pages[currentindex].hideAni(function(){
 		   		pages[currentindex].ele.hide();
@@ -57,6 +57,15 @@ function Scene(){
 		   		pages[currentindex].showAni();
 		   });
 		   
+		});
+
+		$('.moveimg').hammer().bind("swipeleft", function(ev) {
+		   ev.preventDefault();
+		   pages[currentindex].swipeleft();
+		});
+		$('.moveimg').hammer().bind("swiperight", function(ev) {
+		   ev.preventDefault();
+		   pages[currentindex].swiperight();
 		});
 
 
