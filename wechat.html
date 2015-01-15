@@ -28,11 +28,73 @@
 
 </head>
 <body>
-   <div id="main" class="swiper-container">
-      <div class="swiper-wrapper">
-      <!--
+    <div id="main" class="swiper-container">
+        <div class="swiper-wrapper">
+            <!--
       <div class="pagination">adsfafaf</div>
-      -->
+        -->
+        <div class="swiper-slide page wrapper " id="page0">
+            <div class="pageContent">
+                <p class='h1 text-center'>Introduction</p>
+                <p class='h3'>技术方案概述</p>
+                <div class=" grid grid-gutter-half">
+
+                    <div class="grid-item one-fourth">
+                        <p class="drop-cap" style="font-size:1.5em;">Gesture</p>
+                    </div>
+                    <div class="grid-item three-fourths">
+                        <p style="font-size:1.5em;">
+                            使用SWiper框架，
+                处理上下左右滑动状态下的事件处理。包含了常用的左右上下滑动效果。以及scroll处理。
+                        </p>
+                    </div>
+
+                    <div class="grid-item one-fourth">
+                        <p class="drop-cap" style="font-size:1.5em;">Anime</p>
+                    </div>
+                    <div class="grid-item three-fourths">
+                        <p style="font-size:1.5em;">
+                            使用CSS3动画框架，该框架对十几种CSS动画进行了封装。
+                            由于该框架对WP8 IE不兼容，所以对此部分进行了一部分完善。
+                        </p>
+                    </div>
+
+
+                    <div class="grid-item one-fourth">
+                        <p class="drop-cap" style="font-size:1.5em;">Page</p>
+                    </div>
+                    <div class="grid-item three-fourths">
+                        <p style="font-size:1.5em;">
+                            使用Responsive框架。页面元素均响应式布局。常用的表单等元素也有封装。
+                        </p>
+                    </div>
+
+                    <div class="grid-item one-fourth">
+                        <p class="drop-cap" style="font-size:1.5em;">Other</p>
+                    </div>
+                    <div class="grid-item three-fourths">
+                        <p style="font-size:1.5em;">
+                            依赖于Jquery. 在PC等宽度较大设备上仅显示手机比例方便调试。
+                            目前还没有完善成为整体框架。
+                        </p>
+                    </div>
+                    <div class="grid-item one-fourth"></div>
+
+                    <div class="grid-item one-half">
+                        <h3>HTML5 video</h3>
+                        <p><video controls style="background-color:#222;">
+                            <source src="http://webgl.qiniudn.com/videobingyuhuo.m4v" type="video/mp4">
+                        </video></p>
+                    </div>
+
+                </div>
+
+                <h4 class="h1 text-center">上下滑动切换页面</h4>
+
+            </div>
+
+        </div>
+
         <div class="swiper-slide page wrapper " id="page1">
             <div class=" grid grid-gutter-half">
                 <div class="grid-item medium-one_whole large-two-fifths">
@@ -47,15 +109,15 @@
                 </div>
             </div>
 
-                <div class="moveable">
-                    <div class="imglist grid grid-gutter-half">
-                        <img class="moveimg one-third" src="img/intro_p2.png">
-                        <img class="moveimg one-third" src="img/intro_p2.png">
-                        <img class="moveimg one-third" src="img/intro_p2.png">
-                        <img class="moveimg one-third" src="img/intro_p2.png">
-                        <img class="moveimg one-third" src="img/intro_p2.png">
-                        <img class="moveimg one-third" src="img/intro_p2.png"></div>
-                </div>
+            <div class="moveable">
+                <div class="imglist grid grid-gutter-half">
+                    <img class="moveimg one-third" src="img/intro_p2.png">
+                    <img class="moveimg one-third" src="img/intro_p2.png">
+                    <img class="moveimg one-third" src="img/intro_p2.png">
+                    <img class="moveimg one-third" src="img/intro_p2.png">
+                    <img class="moveimg one-third" src="img/intro_p2.png">
+                    <img class="moveimg one-third" src="img/intro_p2.png"></div>
+            </div>
 
             <p>
                 <button id="songzhufu" style="margin-top:100px;" class="button button-block one-whole button-primary">送祝福</button>
@@ -80,15 +142,15 @@
                 </div>
             </div>
 
-                <div class="moveable">
-                    <div class="imglist grid grid-gutter-half">
-                        <img class="img1 moveimg one-third" src="img/intro_p3.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p3.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p3.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p3.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p3.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p3.png"></div>
-                </div>
+            <div class="moveable">
+                <div class="imglist grid grid-gutter-half">
+                    <img class="img1 moveimg one-third" src="img/intro_p3.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p3.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p3.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p3.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p3.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p3.png"></div>
+            </div>
 
         </div>
 
@@ -109,15 +171,15 @@
                 </div>
             </div>
 
-                <div class="moveable">
-                    <div class="imglist grid grid-gutter-half">
-                        <img class="img1 moveimg one-third" src="img/intro_p4.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p4.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p4.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p4.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p4.png">
-                        <img class="img2 moveimg one-third" src="img/intro_p4.png"></div>
-                </div>
+            <div class="moveable">
+                <div class="imglist grid grid-gutter-half">
+                    <img class="img1 moveimg one-third" src="img/intro_p4.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p4.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p4.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p4.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p4.png">
+                    <img class="img2 moveimg one-third" src="img/intro_p4.png"></div>
+            </div>
 
         </div>
 
@@ -133,8 +195,8 @@
             </form>
 
         </div>
-       </div>
-
     </div>
+
+</div>
 </body>
 </html>
