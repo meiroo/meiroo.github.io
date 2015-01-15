@@ -15,7 +15,7 @@
                 document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
             }
         } else {
-            document.write('<meta name="viewport" content="width=640, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">');
+            document.write('<meta name="viewport" content="width=640, initial-scale=1.0, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi, user-scalable=no">');
         }
     </script>
     <!--移动端版本兼容 end -->
