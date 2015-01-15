@@ -58,13 +58,15 @@
 }
 
 #page0{
-    background: #a3a4ac;
+    background: #bfb4bc;
 }
 #page1{
     background: #b3d4fc;
 }
 #page2{
     background: #b3d4aa;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 3em;
 }
 #page3{
     background: #b3d4fc;
