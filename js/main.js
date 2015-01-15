@@ -56,11 +56,10 @@ $(function() {
 	yoff = (1 - scale) / 2 * 1012;
 	xoff = (1 - scale) / 2 * 640;
 	var transformContent = 'scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)';
-	//$('.page').css('transform',transformContent);
-	$(".page").css({
-	 transform: transformContent,
-	 MozTransform: transformContent,
-	 WebkitTransform: transformContent,
-	 msTransform: transformContent
-	});
+	// $(".page").css({
+	//  transform: transformContent,
+	//  MozTransform: transformContent,
+	//  WebkitTransform: transformContent,
+	//  msTransform: transformContent
+	// });
 });
