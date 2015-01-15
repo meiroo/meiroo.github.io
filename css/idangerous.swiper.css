@@ -66,7 +66,7 @@ Basic Swiper Styles
 	margin: 0 auto;
 }
 .swiper-slide {
-	float: left;
+	/*float: left;*/
 }
 
 /* IE10 Windows Phone 8 Fixes */
