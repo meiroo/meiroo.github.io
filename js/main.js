@@ -51,15 +51,16 @@ $(function() {
 
 	if(width>640 && height < 1012){
 		scale = height / 1012.0;
+		//alert(width);
+		yoff = (1 - scale) / 2 * 1012;
+		xoff = 1.0;
+		var transformContent = 'scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)';
+		$(".page").css({
+		 transform: transformContent,
+		 MozTransform: transformContent,
+		 WebkitTransform: transformContent,
+		 msTransform: transformContent
+		});
 	}
-	//alert(width);
-	yoff = (1 - scale) / 2 * 1012;
-	xoff = 1.0;
-	var transformContent = 'scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)';
-	$(".page").css({
-	 transform: transformContent,
-	 MozTransform: transformContent,
-	 WebkitTransform: transformContent,
-	 msTransform: transformContent
-	});
+	
 });
