@@ -729,12 +729,15 @@ pulse
 .pulse{
 	animation-name: pulse;
 	-webkit-animation-name: pulse;	
+	-ms-animation-name: pulse;
 
 	animation-duration: 1.5s;	
 	-webkit-animation-duration: 1.5s;
+	-ms-animation-duration : 1.5s;
 
 	animation-iteration-count: infinite;
 	-webkit-animation-iteration-count: infinite;
+	-ms-animation-iteration-count:infinite;
 }
 
 @keyframes pulse {
@@ -763,6 +766,21 @@ pulse
 	}	
 	100% {
 		-webkit-transform: scale(0.95);
+		opacity: 0.7;	
+	}			
+}
+
+@-ms-keyframes pulse {
+	0% {
+		-ms-transform: scale(0.95);
+		opacity: 0.7;		
+	}
+	50% {
+		-ms-transform: scale(1);
+		opacity: 1;	
+	}	
+	100% {
+		-ms-transform: scale(0.95);
 		opacity: 0.7;	
 	}			
 }
