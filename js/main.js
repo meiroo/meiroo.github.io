@@ -85,7 +85,7 @@ $(function() {
 		//alert(width);
 		yoff = (1 - scale) / 2 * 1012;
 		xoff = 1.0;
-		var transformContent = 'scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)';
+		var transformContent = 'scale('+scale+') '+ 'translate( 0px,-'+ yoff/scale + 'px)';
 		 $(".page").css({
 		  transform: transformContent,
 		  MozTransform: transformContent,
