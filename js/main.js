@@ -46,8 +46,8 @@ $(function() {
 	var xoff = 0;
 	var yoff = 0;
 
-	alert('width: '+document.body.clientWidth + ":" + window.screen.width);
-	alert('height: '+document.body.clientHeight + ":" + window.screen.height);
+	//alert('width: '+document.body.clientWidth + ":" + window.screen.width);
+	//alert('height: '+document.body.clientHeight + ":" + window.screen.height);
 
 	if(width>640 && height < 1012){
 		scale = height / 1012.0;
@@ -55,12 +55,12 @@ $(function() {
 		yoff = (1 - scale) / 2 * 1012;
 		xoff = 1.0;
 		var transformContent = 'scale('+scale+') '+ 'translate( -'+ xoff/scale +'px,-'+ yoff/scale + 'px)';
-		$(".page").css({
-		 transform: transformContent,
-		 MozTransform: transformContent,
-		 WebkitTransform: transformContent,
-		 msTransform: transformContent
-		});
+		 $(".page").css({
+		  transform: transformContent,
+		  MozTransform: transformContent,
+		  WebkitTransform: transformContent,
+		  msTransform: transformContent
+		 });
 	}
 	
 });
