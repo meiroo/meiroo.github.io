@@ -49,7 +49,7 @@ $(function() {
 	alert('width: '+document.body.clientWidth + ":" + window.screen.width);
 	alert('height: '+document.body.clientHeight + ":" + window.screen.height);
 
-	if(height < 1012){
+	if(width>640 && height < 1012){
 		scale = height / 1012.0;
 	}
 	//alert(width);
