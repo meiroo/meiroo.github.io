@@ -28,8 +28,9 @@ $(function() {
         cssWidthAndHeight:true,
       });
 
-	//alert(document.body.clientHeight);
-	//alert(window.screen.width);
+	alert(document.body.clientWidth);
+	alert(window.screen.width);
+	
 	var height = window.screen.height;
 	$('#page1 .pure-img').addClass("hatch");
 	//$('.page').width(height/16*9);
@@ -42,8 +43,6 @@ $(function() {
 	var yoff = 0;
 	if(window.screen.width < 640){
 		scale = window.screen.width / 640.0;
-		
-		
 	}
 
 	if(window.screen.height < 1012){
