@@ -208,12 +208,15 @@ slideRight
 .slideRight{
 	animation-name: slideRight;
 	-webkit-animation-name: slideRight;	
+	-ms-animation-name: slideRight;	
 
 	animation-duration: 1s;	
 	-webkit-animation-duration: 1s;
+	-ms-animation-duration: 1s;
 
 	animation-timing-function: ease-in-out;	
 	-webkit-animation-timing-function: ease-in-out;		
+	-ms-animation-timing-function: ease-in-out;		
 
 	visibility: visible !important;	
 }
@@ -260,6 +263,27 @@ slideRight
 	}
 }
 
+@-ms-keyframes slideRight {
+	0% {
+		-ms-transform: translateX(-150%);
+	}
+	50%{
+		-ms-transform: translateX(8%);
+	}
+	65%{
+		-ms-transform: translateX(-4%);
+	}
+	80%{
+		-ms-transform: translateX(4%);
+	}
+	95%{
+		-ms-transform: translateX(-2%);
+	}			
+	100% {
+		-ms-transform: translateX(0%);
+	}
+}
+
 /*
 ==============================================
 slideExpandUp
@@ -270,12 +294,15 @@ slideExpandUp
 .slideExpandUp{
 	animation-name: slideExpandUp;
 	-webkit-animation-name: slideExpandUp;	
+	-ms-animation-name: slideExpandUp;
 
 	animation-duration: 1.6s;	
 	-webkit-animation-duration: 1.6s;
+	-ms-animation-duration: 1.6s;
 
 	animation-timing-function: ease-out;	
 	-webkit-animation-timing-function: ease -out;
+	-ms-animation-timing-function: ease -out;
 
 	visibility: visible !important;	
 }
@@ -337,6 +364,36 @@ slideExpandUp
 	}	
 	100%{
 		-webkit-transform: translateY(0%) scaleX(1);		
+	}
+}
+
+@-ms-keyframes slideExpandUp {
+	0% {
+		-ms-transform: translateY(100%) scaleX(0.5);
+	}
+	30%{
+		-ms-transform: translateY(-8%) scaleX(0.5);
+	}	
+	40%{
+		-ms-transform: translateY(2%) scaleX(0.5);
+	}
+	50%{
+		-ms-transform: translateY(0%) scaleX(1.1);
+	}
+	60%{
+		-ms-transform: translateY(0%) scaleX(0.9);		
+	}
+	70% {
+		-ms-transform: translateY(0%) scaleX(1.05);
+	}			
+	80%{
+		-ms-transform: translateY(0%) scaleX(0.95);		
+	}
+	90% {
+		-ms-transform: translateY(0%) scaleX(1.02);
+	}	
+	100%{
+		-ms-transform: translateY(0%) scaleX(1);		
 	}
 }
 
