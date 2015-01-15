@@ -46,6 +46,9 @@ $(function() {
 	var xoff = 0;
 	var yoff = 0;
 
+	alert('width: '+document.body.clientWidth + ":" + window.screen.width);
+	alert('height: '+document.body.clientHeight + ":" + window.screen.height);
+
 	if(height < 1012){
 		scale = height / 1012.0;
 	}
