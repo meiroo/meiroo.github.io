@@ -18,6 +18,24 @@ var browser={
      language:(navigator.browserLanguage || navigator.language).toLowerCase()
 }
 
+var pageAni = {};
+pageAni.onPage1 = function(){
+	$('#page1 .pure-img').addClass("pulse");
+	$('#page1 .moveimg').addClass("hatch");
+	$('#page1 button').addClass("slideRight");
+}
+pageAni.onPage2 = function(){
+	$('#page2 .pure-img').addClass("pulse");
+	$('#page2 .moveimg').removeClass("pullUp").addClass("pullUp");
+}
+pageAni.onPage3 = function(){
+	$('#page3 .pure-img').addClass("pulse");
+	$('#page3 .moveimg').addClass("pullDown");
+}
+pageAni.onPage4 = function(){
+	$('#page4 button').addClass('slideExpandUp');
+}
+
 $(function() {
 	var mySwiper = new Swiper('.swiper-container',{
         //pagination: '.pagination',
@@ -26,22 +44,23 @@ $(function() {
         calculateHeight: true,
         speed:750, 
         cssWidthAndHeight:true,
+        onInit:function(swiper){
+        	pageAni.onPage1();
+        },
+        onSlideChangeEnd:function(swiper,direction){
+        	var index = swiper.activeIndex+1;
+        	if(index ==2)
+        		pageAni.onPage2();
+        	if(index ==3)
+        		pageAni.onPage3();
+        	if(index ==4)
+        		pageAni.onPage4();
+        }
       });
 
-	//alert(document.body.clientWidth);
-	//alert(window.screen.width);
-	//alert(document.body.clientHeight);
-	//alert(window.screen.height);
-	//alert( document.body.clientWidth);
-	//alert( document.body.clientHeight);
 	var width = document.body.clientWidth;
 	var height = window.screen.height;
-
-	$('#page1 .pure-img').addClass("hatch");
-	//$('.page').width(height/16*9);
-	//$('.page').width(800);
-	//transform: scale(0.47808764940239);
-	//alert($('.page').css('width'));
+	
 	var scale = 1.0;
 	var xoff = 0;
 	var yoff = 0;
@@ -62,5 +81,6 @@ $(function() {
 		  msTransform: transformContent
 		 });
 	}
+	
 	
 });
