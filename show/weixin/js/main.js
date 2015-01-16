@@ -1,18 +1,18 @@
 var browser={
 	versions:function(){
         var u = navigator.userAgent, app = navigator.appVersion;
-        return {         //ÒÆ¶¯ÖÕ¶Ëä¯ÀÀÆ÷°æ±¾ĞÅÏ¢
-            trident: u.indexOf('Trident') > -1, //IEÄÚºË
-            presto: u.indexOf('Presto') > -1, //operaÄÚºË
-            webKit: u.indexOf('AppleWebKit') > -1, //Æ»¹û¡¢¹È¸èÄÚºË
-            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //»ğºüÄÚºË
-            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //ÊÇ·ñÎªÒÆ¶¯ÖÕ¶Ë
-            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //iosÖÕ¶Ë
-            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //androidÖÕ¶Ë»òucä¯ÀÀÆ÷
-            iPhone: u.indexOf('iPhone') > -1 , //ÊÇ·ñÎªiPhone»òÕßQQHDä¯ÀÀÆ÷
+        return {         //ç§»åŠ¨ç»ˆç«¯æµè§ˆå™¨ç‰ˆæœ¬ä¿¡æ¯
+            trident: u.indexOf('Trident') > -1, //IEå†…æ ¸
+            presto: u.indexOf('Presto') > -1, //operaå†…æ ¸
+            webKit: u.indexOf('AppleWebKit') > -1, //è‹¹æœã€è°·æ­Œå†…æ ¸
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //ç«ç‹å†…æ ¸
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //æ˜¯å¦ä¸ºç§»åŠ¨ç»ˆç«¯
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //iosç»ˆç«¯
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //androidç»ˆç«¯æˆ–ucæµè§ˆå™¨
+            iPhone: u.indexOf('iPhone') > -1 , //æ˜¯å¦ä¸ºiPhoneæˆ–è€…QQHDæµè§ˆå™¨
             wp : u.indexOf('Windows Phone') > -1,
-            iPad: u.indexOf('iPad') > -1, //ÊÇ·ñiPad
-            webApp: u.indexOf('Safari') == -1 //ÊÇ·ñwebÓ¦¸Ã³ÌĞò£¬Ã»ÓĞÍ·²¿Óëµ×²¿
+            iPad: u.indexOf('iPad') > -1, //æ˜¯å¦iPad
+            webApp: u.indexOf('Safari') == -1 //æ˜¯å¦webåº”è¯¥ç¨‹åºï¼Œæ²¡æœ‰å¤´éƒ¨ä¸åº•éƒ¨
         };
      }(),
      language:(navigator.browserLanguage || navigator.language).toLowerCase()
@@ -21,7 +21,6 @@ var browser={
 var pageAni = {};
 pageAni.onPage0 = function(){
 	$('#page0 .h1').addClass('bigEntrance');
-	$('#page0 .drop-cap').addClass('slideRight');
 	$('#page0 .three-fourths').addClass('slideLeft');
 	$('#page0 button').addClass("slideRight");
 	

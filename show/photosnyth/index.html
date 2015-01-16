@@ -1,0 +1,269 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - interactive - raycasting - pointcloud</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				color: #ffffff;
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				position: absolute;
+				top: 0px;
+				width: 100%;
+				padding: 5px;
+				font-family: Monospace;
+				font-size: 13px;
+				text-align: center;
+				font-weight: bold;
+			}
+			a {
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container" style="overflow: hidden;"></div>
+		<div id="info"><a href="http://threejs.org" target="_blank">three.js</a> webgl - interactive - raycasting - pointcloud </div>
+
+		<script src="three/three.js"></script>
+        <script src="three/PLYLoader.js"></script>
+		<script src="three/Detector.min.js"></script>
+		<script src="three/stats.min.js"></script>
+		<script src="three/jquery-1.10.2.js"></script>
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var renderer, scene, camera1, camera2, stats;
+			var pointclouds;
+			var raycaster, intersects;
+			var mouse = { x: 1, y: 1 };
+			var vector = new THREE.Vector3();
+			var intersection = null;
+			var spheres = [];
+			var spheresIndex = 0;
+			var clock;
+
+			var mode = 0;
+
+			var threshold = 0.1;
+			var pointSize = 0.05;
+			var width = 150;
+			var length = 150;
+			var rotateY = new THREE.Matrix4().makeRotationZ( 0.005 );
+			
+			init();
+			animate();
+
+
+			function init() {
+
+				container = document.getElementById( 'container' );
+
+				scene = new THREE.Scene();
+
+				clock = new THREE.Clock();
+
+				camera1 = new THREE.PerspectiveCamera( 62.4777, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera1.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,30 ) );
+				camera1.applyMatrix( new THREE.Matrix4().makeRotationZ( -0.5 ) );
+
+				camera2 = new THREE.PerspectiveCamera( 62.4777, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera2.applyMatrix( new THREE.Matrix4().makeTranslation( 0,0,30 ) );
+				camera2.applyMatrix( new THREE.Matrix4().makeRotationZ( -0.5 ) );
+				//camera.applyMatrix( new THREE.Matrix4().makeTranslation );
+				//camera.position = (new THREE.Vector3(-3.25044, 1.50977, -0.0802371));
+				//camera.setRotationFromQuaternion(new THREE.Quaternion(0.0539125, -0.449611, -0.883975, 0.116327));
+
+				var sphereGeometry = new THREE.SphereGeometry( 0.5, 32, 32 );
+				var sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading } );
+
+				$.getJSON('models/0.json',{}, function(json, textStatus) {
+						/*optional stuff to do after success */
+						console.log(json);
+						var cameras = json.cameras;
+						for ( var i = 0; i < cameras.length; i++ ) {
+
+							var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+							scene.add( sphere );
+							spheres.push( sphere );
+							sphere.position.x = cameras[i].position[0];
+							sphere.position.y = cameras[i].position[1];
+							sphere.position.z = cameras[i].position[2];
+							sphere.scale.x = 1.0/cameras.length*i;
+							sphere.scale.y = 1.0/cameras.length*i;
+							sphere.scale.z = 1.0/cameras.length*i;
+							sphere.setRotationFromQuaternion(new THREE.Quaternion(cameras[i].orientation[0],cameras[i].orientation[1],cameras[i].orientation[2],cameras[i].orientation[3]));
+
+							//var pos = new THREE.Vector3(cameras[i].position[0],cameras[i].position[1],cameras[i].position[2]);
+							//positions.push(sphere.position);
+							//console.log(sphere.position);
+
+						}
+
+
+				});
+				
+				
+				var loader = new THREE.PLYLoader();
+				loader.addEventListener( 'load', function ( event ) {
+
+					var geometry = event.content;
+					var material = new THREE.PointCloudMaterial( { size: 0.5, vertexColors: THREE.VertexColors } );
+					//var mesh = new THREE.Mesh( geometry, material );
+					var pc = new THREE.PointCloud( geometry, material );
+					pc.position.set( 0, 0, 0 );
+					pc.scale.set( 3, 3, 3 );
+					pointclouds = [ pc];
+
+					scene.add( pc );
+
+				} );
+				loader.load( 'models/points_0.ply' );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				container.appendChild( renderer.domElement );
+
+				//
+
+				raycaster = new THREE.Raycaster();
+				raycaster.params.PointCloud.threshold = threshold;
+
+				//
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild( stats.domElement );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+				document.addEventListener( 'keyup', onDocumentKeyUp, false );
+
+			}
+
+			function onDocumentKeyUp( event ) {
+
+				if(event.keyCode === 32){
+					mode = 1- mode;
+				}
+				
+
+			}
+
+			function onWindowResize() {
+
+				camera1.aspect = window.innerWidth / window.innerHeight;
+				camera1.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+				stats.update();
+
+			}
+
+			var toggle = 0;
+			var index = 1;
+
+			function render() {
+
+				var camera = camera1;
+
+				if(mode ==0){
+					camera.applyMatrix( rotateY );
+				}else{
+					camera = camera2;
+				}
+
+				vector.set( mouse.x, mouse.y, 0.1 ).unproject( camera );
+
+				raycaster.ray.set( camera.position, vector.sub( camera.position ).normalize() );
+
+				var intersections = raycaster.intersectObjects( pointclouds );
+				intersection = ( intersections.length ) > 0 ? intersections[ 0 ] : null;
+
+				
+
+				for ( var i = 0; i < spheres.length; i++ ) {
+
+					var sphere = spheres[ i ];
+					sphere.scale.multiplyScalar( 0.98 );
+					if(sphere.scale.x <= 0.1){
+						 spheres[ i ].scale.x = 1;
+						 spheres[ i ].scale.y = 1;
+						 spheres[ i ].scale.z = 1;
+					}
+				}
+
+				
+				
+				if(spheres.length && mode === 1){
+
+					toggle += clock.getDelta();
+				
+					var m = toggle%spheres.length;
+					var floor = Math.floor(m);
+					var ceil = Math.ceil(m);
+					//
+					var start = spheres[floor];
+					var end = spheres[ceil%spheres.length];
+					var parcent = m - floor;
+
+					
+					var pos = new THREE.Vector3();
+					var pos2 = new THREE.Vector3();					
+					pos.copy(start.position);
+					pos.multiplyScalar(1.0 - parcent);
+					pos2.copy(end.position);
+					pos2.multiplyScalar(parcent);
+					
+
+					var ori = new THREE.Quaternion();
+					var ori2 = new THREE.Quaternion();
+					ori.copy(start.quaternion);
+					ori.x *= (1.0 - parcent);
+					ori.y *= (1.0 - parcent);
+					ori.z *= (1.0 - parcent);
+					ori.w *= (1.0 - parcent);
+					ori2.copy(end.quaternion);
+					ori2.x *= parcent;
+					ori2.y *= parcent;
+					ori2.z *= parcent;
+					ori2.w *= parcent;
+					camera.position.copy(pos.add(pos2));
+					camera.quaternion.x = ori.x + ori2.x;
+					camera.quaternion.y = ori.y + ori2.y;
+					camera.quaternion.z = ori.z + ori2.z;
+					camera.quaternion.w = ori.w + ori2.w;
+
+
+					
+
+				}
+
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+
+</html>
