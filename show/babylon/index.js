@@ -30,20 +30,68 @@ var onload = function () {
     // Demos
     var demos = [
         {
-            title: "HEART", scene: "Heart", screenshot: "heart.jpg", doNotUseCDN: true, size: "14 MB", onload: function () {
+            title: "HEART", scene: "Heart", screenshot: "Heart.jpg", doNotUseCDN: true, size: "14 MB", onload: function () {
+                //scene.getMeshByName("Labels").setEnabled(false);
+                var obj = scene.activeCamera;
+                console.log(obj);
+
+            }
+        },
+        {
+            title: "Meiro", scene: "Meiro", screenshot: "Meiro.jpg", doNotUseCDN: true, size: "5 MB", onload: function () {
                 //scene.getMeshByName("Labels").setEnabled(false);
             }
         },
         {
-            title: "Meiro", scene: "Meiro", screenshot: "Meiro.jpg", doNotUseCDN: true, size: "14 MB", onload: function () {
+            title: "Tower", scene: "Tower", screenshot: "Tower.jpg", doNotUseCDN: true, size: "28 MB", onload: function (scene,engine) {
                 //scene.getMeshByName("Labels").setEnabled(false);
+                console.log(scene.meshes);
+                //scene.gravity = new BABYLON.Vector3(0, 0, 0);
+                var camera = scene.activeCamera;
+                //camera.applyGravity = false;
+                //camera.ellipsoid = new BABYLON.Vector3(500, 100, 500);
+                //camera.collisionRadius = new BABYLON.Vector3(2000, 2000, 2000);
+                scene.collisionsEnabled = true;
+                camera.checkCollisions = true;
+
+                for(var i = 0;i<scene.meshes.length;i++){
+                    var mesh = scene.meshes[i];
+                    mesh.checkCollisions = true;
+                    if(mesh.name === '#Skydome'){
+                        mesh.checkCollisions = false;
+                    }
+                }
             }
         },
         {
-            title: "Tower", scene: "Tower", screenshot: "Tower.jpg", doNotUseCDN: true, size: "14 MB", onload: function () {
-                //scene.getMeshByName("Labels").setEnabled(false);
+            title: "Shop", scene: "Shop", screenshot: "Shop.jpg", doNotUseCDN: true, size: "35 MB", onload: function (scene,engine,canvas) {
+                //scene.enablePhysics();
+                //createShopScene(scene,engine,canvas);
+                scene.ambientColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+                var camera = scene.activeCamera;
+                //alert(camera.speed);
+                camera.speed = 50;
+                scene.collisionsEnabled = true;
+                camera.checkCollisions = true;
+
+                scene.gravity = new BABYLON.Vector3(0, -90, 0);
+                camera.applyGravity = true;
+                camera.ellipsoid = new BABYLON.Vector3(800, 800, 800);
+                //camera.collisionRadius = new BABYLON.Vector3(2000, 2000, 2000);
+
+                // for(var i = 0;i<scene.meshes.length;i++){
+                //     var mesh = scene.meshes[i];
+                //     mesh.checkCollisions = true;
+                // }
             }
-        }
+        },
+        {
+            title: "Him", scene: "Him", screenshot: "Him.png", doNotUseCDN: true, size: "5 MB", onload: function (scene,engine,canvas) {
+                //scene.getMeshByName("Labels").setEnabled(false);
+                //scene.debugLayer.show(true);
+                createScene(scene,engine,canvas);
+            }
+        },
 
         ];
 
@@ -128,14 +176,40 @@ var onload = function () {
                     mode = ".binary";
                 }
 
-                loadScene(demo.id !== undefined ? demo.id : demo.scene, mode, sceneLocation, function () {
+                /*if(demo.scene === 'Shop'){
+                    //demo.onload(scene,engine);
+                    //scene.activeCamera.attachControl(canvas);
+                    var engine = new BABYLON.Engine(canvas, true);
+                    demo.onload(scene,engine,canvas);
+                    return;
+                }*/
+
+
+                if(demo.scene === 'Him'){
+                    //demo.onload(scene,engine);
+
+                    loadScene(demo.id !== undefined ? demo.id : demo.scene, mode, sceneLocation, function (scene) {
+                        BABYLON.StandardMaterial.BumpTextureEnabled = true;
+                        if (demo.collisions !== undefined) {
+                            scene.collisionsEnabled = demo.collisions;
+                        }
+
+                        if (demo.onload) {
+                            scene.activeCamera.attachControl(canvas);
+                            demo.onload(scene,engine,canvas);
+                        }
+                    });
+                    return;
+                }
+
+                loadScene(demo.id !== undefined ? demo.id : demo.scene, mode, sceneLocation, function (scene) {
                     BABYLON.StandardMaterial.BumpTextureEnabled = true;
                     if (demo.collisions !== undefined) {
                         scene.collisionsEnabled = demo.collisions;
                     }
 
                     if (demo.onload) {
-                        demo.onload();
+                        demo.onload(scene,engine,canvas);
                     }
                 });
             };
@@ -320,103 +394,7 @@ var onload = function () {
             engine.resize();
 
             if (typeof name == "number") {
-                var newScene;
-
-                switch (name) {
-                    case 0:
-                        newScene = CreateTestScene(engine);
-                        break;
-                    case 1:
-                        newScene = CreateLightsTestScene(engine);
-                        break;
-                    case 2:
-                        newScene = CreateBumpScene(engine);
-                        break;
-                    case 3:
-                        newScene = CreateFogScene(engine);
-                        break;
-                    case 4:
-                        newScene = CreateMultiMaterialScene(engine);
-                        break;
-                    case 5:
-                        newScene = CreateHeightMapTestScene(engine);
-                        break;
-                    case 6:
-                        newScene = CreateShadowsTestScene(engine);
-                        break;
-                    case 7:
-                        newScene = CreateChartingTestScene(engine);
-                        break;
-                    case 8:
-                        newScene = CreateOctreeTestScene(engine);
-                        break;
-                    case 9:
-                        newScene = CreateBonesTestScene(engine);
-                        break;
-                    case 10:
-                        newScene = CreatePostProcessBloomTestScene(engine);
-                        break;
-                    case 11:
-                        newScene = CreatePostProcessRefractionTestScene(engine);
-                        break;
-                    case 12:
-                        newScene = CreateLensFlaresTestScene(engine);
-                        break;
-                    case 13:
-                        newScene = CreatePhysicsScene(engine);
-                        break;
-                    case 14:
-                        newScene = CreateCellShadingScene(engine);
-                        break;
-                    case 15:
-                        newScene = CreateCSGTestScene(engine);
-                        break;
-                    case 16:
-                        newScene = CreateConvolutionTestScene(engine);
-                        break;
-                    case 17:
-                        newScene = CreateActionsTestScene(engine);
-                        break;
-                    case 18:
-                        newScene = CreateInstancesTestScene(engine);
-                        break;
-                    case 19:
-                        newScene = CreateParticlesTestScene(engine);
-                        break;
-                    case 20:
-                        newScene = CreateLinesTestScene(engine);
-                        break;
-                    case 21:
-                        newScene = CreateDragDropTestScene(engine);
-                        break;
-                    case 22:
-                        newScene = CreateDisplacementTestScene(engine);
-                        break;
-                    case 23:
-                        newScene = CreateFresnelTestScene(engine);
-                        break;
-                    case 24:
-                        newScene = CreateCustomRenderTargetTestScene(engine);
-                        break;
-                    case 25:
-                        newScene = CreateParticles2TestScene(engine);
-                        break;
-                }
-                scene = newScene;
-                scene.executeWhenReady(function () {
-                    canvas.style.opacity = 1;
-                    if (scene.activeCamera) {
-                        scene.activeCamera.attachControl(canvas);
-                        if (then) {
-                            then();
-                        }
-                    }
-
-                    // UI
-                    restoreUI();
-                });
-
-                return;
+                
             };
 
             var dlCount = 0;
@@ -439,7 +417,7 @@ var onload = function () {
                     }
 
                     if (then) {
-                        then();
+                        then(scene,engine);
                     }
 
                     // UI
