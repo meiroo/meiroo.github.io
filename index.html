@@ -131,9 +131,10 @@
                     <div class="panel panel-primary">
                         <em>AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。</em>
                         <div class="panel-body">
-                            takmin的开源项目使用了OpenCV识别目标，再用OpenGL绘制增强现实效果。<br>
-                            目前基于takmin的代码修改部分问题编译成功,替换OpenCV版本为249。<br>
-                            下一步debug此工程的基本算法。计划移植到Android
+                            takmin的开源项目使用了OpenCV识别目标，再用OpenGL绘制增强现实效果。但只有Windows版本。本项目打算重写模型和渲染部分，并移植到Android版本。<br>
+                            目前基于takmin的代码编译Windows版本成功,修复部分bug，并替换OpenCV版本为249。<br>
+                            搭建了本项目的Android版本，目前在Android版本上成功移植识别部分。即使用Android Camera进行OpenCV识别后绘制基本的OpenGL图形。
+                            下一步调研继续优化此工程的基本算法，并完善Android版本。
                         </div>
                         <a href="https://github.com/meiroo/OpenCV-Marker-less-AR" target="_black" class="btn btn-sup btn-material-deep-orange ">
                             <i style="font-size: 18pt;" class="mdi-action-bug-report"></i>
