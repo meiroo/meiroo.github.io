@@ -14,7 +14,7 @@ body .modal {
     max-height: 700px;
 }
 
-.jumbotron li{
+.jumbotron li,.jumbotron .panel-body,.jumbotron .panel{
 	font-size: 21px;
 }
 
