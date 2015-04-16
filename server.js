@@ -20,7 +20,7 @@ function processStatic(request, response){
     //console.log(absPath);
 
     //test whether the file is exists first
-    path.exists(absPath, function(exists) {
+    fs.exists(absPath, function(exists) {
         if(exists) {
             //if ok
             var ext = path.extname(urlpath);

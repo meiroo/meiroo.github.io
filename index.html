@@ -78,11 +78,23 @@
                 <div class="col-lg-8 col-md-8 col-sm-8">
 
                     <div class="panel panel-primary">
-                        <em>Photosynth ：微软基于照片序列的3D重建服务展示网络</em>
+                        <em>AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。</em>
                         <div class="panel-body">
-                            对需要重建物体拍照。然后使用Photosynth preview服务展示重建效果。<br>
-                            目前调查：使用SynthExport开源工程下载点云数据。通过官网新增的导出接口下载Camera数据。目前使用这两个数据合并展示了点云的3D模型和Camera视角序列。<br>
-                            下一步寻找合适办法。将点云组成模型并且和照片结合。
+                            学习了takmin的win版开源代码，基于OpenCV移植了识别部分到Android。<br>
+                            基于CV的光流，开发了一个ios版本的识别和跟踪。<br>
+                            iphone5c识别大约50-80ms，跟踪15-25ms。见右方视频。
+                        </div>
+                        <a href="https://github.com/meiroo/OpenCV-Marker-less-AR" target="_black" class="btn btn-sup btn-material-deep-orange ">
+                            <i style="font-size: 18pt;" class="mdi-action-bug-report"></i>
+                            <span>Github</span>
+                        </a>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <em>Photosynth ：基于2D图片序列的3D重建</em>
+                        <div class="panel-body">
+                            目前基于Photosynth数据展示了点云的3D模型和Camera视角序列。<br>
+                            下一步计划利用OpenCV以及SFM算法实现重建系统，并基于webgl展示。
                         </div>
                         <a href="http://meiroo.github.io/show/photosynth/" target="_black" class="btn btn-sup btn-material-pink btn-raised ">
                             <i style="font-size: 18pt;" class="mdi-action-language"></i>
@@ -99,7 +111,6 @@
                         <div class="panel-body">
                             尝试了hammer.js/tweenmax/pure/swiper/justinaguilar等多种框架。<br>
                             用于制作适应手机屏幕的多种动画 以及手势翻页<br>
-                            下一步：申请开发者后，测试微信接口。
                         </div>
                         <a href="http://meiroo.github.io/show/weixin/" target="_black" class="btn btn-sup btn-material-pink btn-raised ">
                             <i style="font-size: 18pt;" class="mdi-action-language"></i>
@@ -127,28 +138,37 @@
                             <span>Github</span>
                         </a>
                         
-                    </div>
-
-                    <div class="panel panel-primary">
-                        <em>AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。</em>
-                        <div class="panel-body">
-                            takmin的开源项目使用了OpenCV识别目标，再用OpenGL绘制增强现实效果。但只有Windows版本。本项目打算重写模型和渲染部分，并移植到Android版本。<br>
-                            目前基于takmin的代码编译Windows版本成功,修复部分bug，并替换OpenCV版本为249。<br>
-                            搭建了本项目的Android版本，目前在Android版本上成功移植识别部分。即使用Android Camera进行OpenCV识别后绘制基本的OpenGL图形。
-                            下一步调研继续优化此工程的基本算法，并完善Android版本。
-                        </div>
-                        <a href="https://github.com/meiroo/OpenCV-Marker-less-AR" target="_black" class="btn btn-sup btn-material-deep-orange ">
-                            <i style="font-size: 18pt;" class="mdi-action-bug-report"></i>
-                            <span>Github</span>
-                        </a>
-                    </div>
-
-
-                    
+                    </div>                   
                     
 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
+
+                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://webgl.qiniudn.com/CV-ios.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>  
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="sample shadow-z-5">
+                            <a href="#" class="thumbnail">
+                                <img src="http://m-soft.qiniudn.com/pointcloud1.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
+                        </div>
+                    </div> 
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="sample shadow-z-5">
+                            <a href="#" class="thumbnail">
+                                <img src="http://m-soft.qiniudn.com/pointcloud2.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
+                        </div>
+                    </div>  
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="sample shadow-z-5">
@@ -160,37 +180,18 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="sample shadow-z-5">
                             <a href="#" class="thumbnail">
-                                <img src="http://m-soft.qiniudn.com/pointcloud2.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
+                                <img src=" http://m-soft.qiniudn.com/AR.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="sample shadow-z-5">
-                            <a href="#" class="thumbnail">
-                                <img src="http://m-soft.qiniudn.com/pointcloud1.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="sample shadow-z-5">
                             <a href="#" class="thumbnail">
                                 <img src="http://m-soft.qiniudn.com/shop.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
                         </div>
                     </div>
 
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="sample shadow-z-5">
-                            <a href="#" class="thumbnail">
-                                <img src="http://m-soft.qiniudn.com/tower.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="sample shadow-z-5">
-                            <a href="#" class="thumbnail">
-                                <img src=" http://m-soft.qiniudn.com/AR.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
-                        </div>
-                    </div>                   
+                                                         
 
                 </div>
 
