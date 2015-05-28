@@ -70,30 +70,76 @@
             </div>
         </div>
 
+        <div id="ar" class="jumbotron" style="margin-top:50px;">
+            <div class="row">
+                <h2>
+                    <a href="#ar">AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。</a>
+                </h2>
+                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>图像识别和跟踪</h4></em> 
+                    <ul>
+
+                        <li>最左边基于takmin代码优化形成的ios版本（识别慢／位置很差）</li>
+
+                        <li>中间是重写识别部分，重构跟踪部分后的版本（识别快／位置较准确）</li>
+
+                        <li>最右边是目前在公司开发完成的版本（识别快／位置精确）</li>
+
+                        <li>目前可以基本达到各种手机上实时，PC上识别10ms以内，跟踪5ms以内。</li>
+
+                    </ul>
+
+                    <a href="http://meiroo.duapp.com" target="_black" class="btn btn-sup btn-material-pink btn-raised "> <i style="font-size: 18pt;" class="mdi-action-language"></i>
+                        <span>VISIT</span>
+                    </a>
+
+
+                    <a href="http://m-soft.qiniudn.com/duapp.apk" target="_black" class="btn btn-sup btn-material-light-blue ">
+                        <i style="font-size: 18pt;" class="mdi-action-android"></i>
+                        <span>Android</span>
+                    </a>
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://webgl.qiniudn.com/CV-ios.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://webgl.qiniudn.com/CV-ios-2.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://webgl.qiniudn.com/CV-ios-3.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
         <div id="explorer" class="jumbotron" style="margin-top:50px;">
             <div class="row">
                 <h2>
                     <a href="#explorer">技术调查队列</a>
                 </h2>
                 <div class="col-lg-7 col-md-7 col-sm-7">
-
-                    <div class="panel panel-primary">
-                        <em>AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。</em>
-                        <div class="panel-body">
-                            学习了takmin的win版开源代码，基于OpenCV移植了识别部分到Android。<br>
-                            takmin版本PC上（i5处理器）识别大约做到60-100ms。跟踪0-16ms。<br>
-                            <br>
-                            基于takmin版本优化并替换了识别跟踪部分算法。相对于takmin版本极大提高效率。从而可以
-                            在移动端实时跟踪和识别。<br>                        目前PC（i5）识别做到5-7ms。跟踪2-3ms。
-                            ios版本（iphone5C）识别20-30ms，跟踪20－30ms基本达到实时。见右方视频。
-                        </div>
-                        <a href="https://github.com/meiroo/OpenCV-Marker-less-AR" target="_black" class="btn btn-sup btn-material-deep-orange ">
-                            <i style="font-size: 18pt;" class="mdi-action-bug-report"></i>
-                            <span>Github</span>
-                        </a>
-                    </div>
-
-
 
                     <div class="panel panel-primary">
                         <em>Photosynth ：基于2D图片序列的3D重建</em>
@@ -149,17 +195,6 @@
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5">
 
-                    
-
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="sample shadow-z-5">
-                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
-                                <source src="http://webgl.qiniudn.com/CV-ios-2.m4v" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>  
-
-                        </div>
-                    </div>
 
                     
                     <div class="col-lg-6 col-md-6 col-sm-6">
