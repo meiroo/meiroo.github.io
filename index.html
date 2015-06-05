@@ -75,16 +75,17 @@
                 <h2>
                     <a href="#ar">AR：使用摄像头识别特定图像目标并基于目标附加3D展示动画。</a>
                 </h2>
-                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>图像识别和跟踪</h4></em> 
+                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>图像识别和跟踪 手机（iPhone5C）测试</h4></em> 
                     <ul>
 
-                        <li>最左边基于takmin代码优化形成的ios版本（识别慢／位置很差）</li>
+                        <li>最左边基于takmin代码优化形成的ios版本（识别慢／跟踪位置很差）
+                        识别80ms／跟踪40ms左右。</li>
 
-                        <li>中间是重写识别部分，重构跟踪部分后的版本（识别快／位置较准确）</li>
+                        <li>中间是自己学习重写的版本（识别快／跟踪位置较好但逐渐变形）
+                        识别40ms／跟踪25ms左右</li>
 
-                        <li>最右边是目前在公司开发完成的版本（识别快／位置精确）</li>
-
-                        <li>目前可以基本达到各种手机上实时，PC上识别10ms以内，跟踪5ms以内。</li>
+                        <li>最右边是目前在公司继续开发完成的版本（识别快／跟踪位置不变形）
+                        识别30ms／跟踪11ms左右。在PC（CPU i5）上跟踪1ms左右。</li>
 
                     </ul>
 
@@ -112,7 +113,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <div class="sample shadow-z-5">
                             <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
-                                <source src="http://webgl.qiniudn.com/CV-ios-3.m4v" type="video/mp4">
+                                <source src="http://webgl.qiniudn.com/CV-ios-4.m4v" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video> 
                         </div>
