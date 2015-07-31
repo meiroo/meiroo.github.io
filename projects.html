@@ -94,10 +94,10 @@
                     <ul>
 
                         <li>最左边基于takmin的Windows代码移植并优化形成的ios版本（识别慢／跟踪位置很差）
-                        识别80ms／跟踪40ms左右。中间是自己重写识别跟踪后的版本（识别快／跟踪位置较好但逐渐变形） 识别40ms／跟踪25ms左右</li>
+                        detection 80ms／tracking 40ms左右。中间是自己重写识别跟踪后的版本（识别快／跟踪位置较好但逐渐变形） detection 40ms／tracking 25ms左右</li>
 
                         <li>最右边是进公司后继续开发，不断修改优化后的Demo版本。（识别快／跟踪位置不变形／Pose准确    待改善： 快速运动Pose会散／识别离太远无法识别）   
-                        目前识别17ms／跟踪10ms左右。在iMac（i5）上跟踪1ms左右。</li>
+                        目前<b>使用CPU的单核单线程没有指令集优化 在iPhone5C上 detection 10ms／tracking 10ms</b>左右。在iMac（i5）上跟踪1ms左右。</li>
 
                         <li>目前跟踪／识别／3D渲染以及骨骼动画 等模块独立开发。仅依赖OpenCV。可以方便支持全部主流平台。</li>
 
