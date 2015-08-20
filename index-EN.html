@@ -69,6 +69,104 @@
             </div>
         </div>
 
+        <div id="Personal" class="jumbotron" style="margin-top:50px;">
+            <div class="row">
+                <h2>
+                    <a href="#Personal">About myself</a>
+                </h2>
+                <ul>
+                    <li>The page is about my projects or interestings.  Including OpenGL/OpenCV/Web  etc.</li>
+                    <li>The page is made with AngularJS／RequireJS／Bootstrap－Material－Design...</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="ar" class="jumbotron" style="margin-top:50px;">
+            <div class="row">
+                <h2>
+                    <a href="#ar">Augmetned Reality:Natural Image detection and tracking.</a>
+                </h2>
+                <div class="col-lg-6 col-md-6 col-sm-6"> <em><h4>Testing videos about AR. All versions are only based on the OpenCV framework without commerial SDKs.</h4></em> 
+                    <ul>
+
+                        <li>Left-up : The mobile-ar-project transplanted from takmin's desktop-ar-project.（detection SLOW／with Accumulated errors）
+                        detection 80ms／tracking 40ms, open sourced below.</li>
+
+                        <li>Middle-up : The detection and tracking sample for current company.（FAST-detection／Tracking accurate-pose)    future work: robust pose with fast-moving／robust detection&tracking with small-scale） 
+
+                        Currently with only single-thread-implemention, the speed is detection 10ms／tracking 10ms on iPhone5C, which cost 1ms on iMac.
+
+                        <li>Right-up : multi-detection & tracking test.</li>
+
+                        <li>Left-down : tracking sample based on Linear Predictor Learning: Very Fast tracking speed,robust on blur. (pose&light-change-invariant need to be improved) </li>
+
+                        <li>The detection/tracking/GLES render(also with skeleton animation) are developed with OpenCV as dependency only, which means the ar code can be tranplanted to any platform.</li>
+
+                    </ul>
+                    
+
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://7j2006.com1.z0.glb.clouddn.com/CV-ios.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                        mobile-AR upon takmin's project(source opend).
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://7j2006.com1.z0.glb.clouddn.com/CV-ios-11.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                        The detection and tracking sample in development.
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://7j2006.com1.z0.glb.clouddn.com/CV-ios-12.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                        Multiple detection and tracking sample in development.
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12"><BR></div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="sample shadow-z-5">
+                            <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
+                                <source src="http://7j2006.com1.z0.glb.clouddn.com/CV-ios-13.m4v" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
+                        </div>
+                        The Linear Predictor tracking implemention sample.
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">                
+                <a href="https://github.com/meiroo/opencv-markerless-AR-mobile" target="_black" class="btn btn-sup btn-material-deep-orange ">
+                        <i style="font-size: 18pt;" class="mdi-action-bug-report"></i>
+                        <span>Github</span>
+                    </a>
+                    </div>
+            </div>
+            
+        </div>
+
+
         <div id="imageserve" class="jumbotron" style="margin-top:50px;">
             <div class="row">
                 <h2>
@@ -347,64 +445,6 @@
             </div>
         </div>
 
-        <div id="explorer" class="jumbotron" style="margin-top:50px;">
-            <div class="row">
-                <h2>
-                    <a href="#web3d">Investigation : webgl,wechat</a>
-                </h2>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-
-                    <em>
-                        <h4>Investigation and Test</h4>
-                    </em>
-                    <ul>
-
-                        <li>Use PhotosynthV2.0 for some 3D reconstruction of My-living-room. Draw the point cloud and the camera series.</li>
-
-                        <li> Test Web Framework for WechatAPI.</li>
-
-                    </ul>
-
-                    <a href="http://meiroo.github.io/show/weixin/" target="_black" class="btn btn-sup btn-material-pink btn-raised ">
-                        <i style="font-size: 18pt;" class="mdi-action-language"></i>
-                        <span>Wechat-Demo</span>
-                    </a>
-
-                    <a href="http://meiroo.github.io/show/photosynth/" target="_black" class="btn btn-sup btn-material-purple btn-raised ">
-                        <i style="font-size: 18pt;" class="mdi-action-language"></i>
-                        <span>Photosynth-Show</span>
-                    </a>
-
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <div class="sample shadow-z-5">
-                            <a href="#" class="thumbnail">
-                                <img src="http://m-soft.qiniudn.com/webwxgetmsgimg.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <div class="sample shadow-z-5">
-                            <a href="#" class="thumbnail">
-                                <img src="http://m-soft.qiniudn.com/pointcloud1.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <div class="sample shadow-z-5">
-                            <a href="#" class="thumbnail">
-                                <img src="http://m-soft.qiniudn.com/pointcloud2.jpg" class="img-rounded img-responsive" alt="Responsive image"></a>
-                        </div>
-                    </div>
-
-                </div>
-
-             </div>
-        </div>
-
-
         <div id="mgl" class="jumbotron" style="margin-top:50px;">
             <div class="row">
                 <h2>
@@ -417,29 +457,15 @@
                     </em>
                     <ul>
 
-                        <li>Base Math：Point,Rect,RawImage,Plane ...</li>
-
-                        <li>Render：　ES1.1 / ES2.0 / ES3.0 / DX11 : Multiple implemention</li>
-
-                        <li>Animation： Linear Interpolation. Animation Controller.</li>
-
+                        <li>Simple Render：　ES1.1 / ES2.0 / ES3.0 / DX11 : Multiple implemention</li>
+                        <li>Animation： Linear Interpolation / Play Controller.</li>
                         <li>Window： GLUT　/ WindowsAPI　/ Android GLSurfaceView Based</li>
-
                         <li>Model：3ds(Model and Animation) / PLY / Blender supported</li>
-
                         <li>Image : bmp,jpg(stb based)/ png (libpng)/ttf (freetype)</li>
-
-                        <li>
-                            Element：For big-amount-elements render. Makeing one draw for multi-elements
-                        </li>
-
-                        <li>Util: Buffer Management.  VBO,PBO,FBO,UBO</li>
-
                         <li>
                             Scene：Multiple test scenes. font/element/terrain/animation/blender etc
                         </li>
-
-                        <li>Android：Android Java Module</li>
+                        <li>Android：GLSurfaceView/Render modules</li>
 
                     </ul>
 
@@ -460,9 +486,6 @@
                         </div>
                     </div>
 
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:30px;">
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="sample shadow-z-5">
@@ -478,9 +501,6 @@
                         </div>
                     </div>
 
-                </div>
-
-                <div class="col-lg-6 col-md-6 col-sm-6" style="margin-top:30px;">
 
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="sample shadow-z-5">

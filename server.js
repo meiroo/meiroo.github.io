@@ -4,7 +4,7 @@ var http = require('http'),
     mime = require('./mime');
     path = require('path');
 
-var port = 8081;
+var port = 8080;
 
 function processStatic(request, response){
     //get path from request's url
