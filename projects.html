@@ -97,11 +97,11 @@
                         detection 80ms／tracking 40ms左右。代码见下方。</li>
 
                         <li>中上视频是进公司后继续开发，不断修改优化后的Demo版本。（识别快／跟踪位置不变形／Pose准确    待改善： 快速运动Pose会散／识别离太远无法识别）   
-                        目前<b>使用CPU的单核单线程没有指令集优化 在iPhone5C上 detection 10ms／tracking 10ms</b>左右。在iMac（i5）上跟踪1ms左右。</li>
+                        目前使用CPU的单核单线程没有指令集优化 在iPhone5C上 <b>detection 10ms／tracking 10ms</b>左右。在iMac（i5）上跟踪1ms左右。</li>
 
                         <li>左下视频为测试多个图片，以及多目标跟踪效果。</li>
 
-                        <li>右下视频为实时检测1万张图片的视频，match时间小于10ms。</li>
+                        <li>右下视频为<b>实时检测10000张图片</b>的视频，match时间小于<b>10ms</b>。</li>
 
                         <li>目前跟踪／识别／3D渲染以及骨骼动画 等模块独立开发。仅依赖OpenCV。可以方便支持全部主流平台。</li>
 
@@ -154,14 +154,14 @@
                         Multiple detection and tracking sample in development.
                     </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
                         <div class="sample shadow-z-5">
                             <video id="video" controls="controls" preload="metadata" autobuffer="autobuffer" loop style="max-width:100%;">
                                 <source src="http://7xnvhc.com1.z0.glb.clouddn.com/VisualWordTree.m4v" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video> 
                         </div>
-                        Image retrieval from 10000 images realtime(matching time less than 10 ms).
+                        Image retrieval from <b>10000 images</b> realtime(matching time less than <b>10 ms</b>).
                     </div>
 
 
