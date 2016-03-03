@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<head>
+    <script src="../css3d.js"></script>
+    <style>
+        #main{
+            width: 500px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main">
+
+</div>
+    <script>
+        //创建场景
+        var s = new C3D.Stage();
+        s.camera.z = 500;
+        s.camera.y = 0;
+        s.size(window.innerWidth, window.innerHeight).material({
+            color : "#cccccc"
+        }).update();
+        document.getElementById('main').appendChild(s.el);
+
+        //创建1个立方体放入场景
+        var c = new C3D.Cube();
+        c.size(1024).position(0, 0, 0).material({
+            front : "images/cube_FR.jpg",
+            back : "images/cube_BK.jpg",
+            left : "images/cube_LF.jpg",
+            right : "images/cube_RT.jpg",
+            up : "images/cube_UP.jpg",
+            down : "images/cube_DN.jpg"
+        }).update();
+        s.addChild(c);
+
+        var p = new C3D.Plane();
+        p.name('ppp').size(460,370).scale(0.2,0.2,0.2).position(0, -300, 0).rotation(0, 20, 0).material({
+            image: 'images/target.png'
+        }).filter({/*blur: ['5px'], */brightness: [3]}).update();
+        s.addChild(p);
+        s.p = p;
+
+
+        function onDeviceMotion(event){
+            var accel = event.accelerationIncludingGravity;
+            var rbeta = event.rotationRate.beta;
+            var rgamma = event.rotationRate.gamma;
+            var interval = event.interval;
+
+            var delta = accel.x*200;
+            s.camera.rotation(0, delta/100, 0).updateT();
+            s.p.rotation(0, delta/50, 0).filter({ brightness: [delta/1500 + 1]}).update();
+
+        }
+
+
+        window.addEventListener('deviceorientation', function(event) {
+          var alpha = event.alpha;
+          var beta = event.beta;
+          var gamma = event.gamma;
+          // Do something
+          var delta = gamma*30;
+          s.camera.rotation(0, delta/100, 0).updateT();
+          s.p.rotation(0, delta/40, 0).filter({ brightness: [delta/2000 + 1.5]}).update();
+        }, false);
+
+
+        //window.addEventListener("devicemotion",onDeviceMotion,false);
+
+        //响应屏幕调整尺寸
+        function resize() {
+            s.size(window.innerWidth, window.innerHeight).update();
+        };
+        window.onresize = function() {
+            resize();
+        };
+        resize();
+
+        //刷新场景
+        requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame ||
+        function(callback) {
+            setTimeout(callback, 1000 / 60);
+        };
+
+        //document.addEventListener("mousemove", mouseMoveHandler);
+
+        function mouseMoveHandler(evt) {
+
+            s.camera.rotation(0, evt.pageX/100, 0).updateT();
+            s.p.rotation(0, evt.pageX/50, 0).filter({ brightness: [evt.pageX/1500 + 1]}).update();
+            console.log(evt.pageX);
+        }
+
+
+        function go() {
+//            c.rotate(0, 0.1, 0).updateT();
+
+            // sp.move(0, 1, 0).update();
+            if(s.camera.z > 100){
+                //s.p.visible = false;
+                s.camera.move(0,0,-5).updateT();
+            }
+            else{
+                if(s.p.y < 0){
+
+                    s.p.move(0,10,0).updateT();
+                }
+            }
+
+            requestAnimationFrame(go);
+        }
+
+        requestAnimationFrame(go);
+
+    </script>
+</body>
