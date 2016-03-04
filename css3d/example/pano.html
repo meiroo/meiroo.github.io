@@ -16,7 +16,7 @@
     <script>
         //创建场景
         var s = new C3D.Stage();
-        s.camera.z = 500;
+        s.camera.z = -100;
         s.camera.y = 0;
         s.size(window.innerWidth, window.innerHeight).material({
             color : "#cccccc"
@@ -25,11 +25,11 @@
 
         //创建1个立方体放入场景
         var c = new C3D.Cube();
-        c.size(1024).position(0, 0, 0).material({
-            front : "images/cube_FR.jpg",
+        c.size(1024,1024,1024).position(0, 0, 0).scale(1,1,1).material({
+            front : "images/C.jpg",
             back : "images/cube_BK.jpg",
-            left : "images/cube_LF.jpg",
-            right : "images/cube_RT.jpg",
+            left : "images/L.jpg",
+            right : "images/R.jpg",
             up : "images/cube_UP.jpg",
             down : "images/cube_DN.jpg"
         }).update();
@@ -84,28 +84,24 @@
             setTimeout(callback, 1000 / 60);
         };
 
-        //document.addEventListener("mousemove", mouseMoveHandler);
+        document.addEventListener("mousemove", mouseMoveHandler);
 
         function mouseMoveHandler(evt) {
-
-            s.camera.rotation(0, evt.pageX/100, 0).updateT();
-            s.p.rotation(0, evt.pageX/50, 0).filter({ brightness: [evt.pageX/1500 + 1]}).update();
-            console.log(evt.pageX);
+            var delta = evt.pageX*5;
+            s.camera.rotation(0, delta/100, 0).updateT();
+            s.p.rotation(0, delta/50, 0).filter({ brightness: [delta/1500 + 1]}).update();
+            console.log(delta);
         }
 
 
         function go() {
-//            c.rotate(0, 0.1, 0).updateT();
 
-            // sp.move(0, 1, 0).update();
-            if(s.camera.z > 100){
-                //s.p.visible = false;
-                s.camera.move(0,0,-5).updateT();
+            if(s.camera.z < 300){
+                s.camera.move(0,0,5).updateT();
             }
             else{
                 if(s.p.y < 0){
-
-                    s.p.move(0,10,0).updateT();
+                    //s.p.move(0,10,0).updateT();
                 }
             }
 
