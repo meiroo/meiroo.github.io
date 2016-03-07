@@ -35,12 +35,12 @@
         }).update();
         s.addChild(c);
 
-        var p = new C3D.Plane();
+        /*var p = new C3D.Plane();
         p.name('ppp').size(460,370).scale(0.2,0.2,0.2).position(0, -300, 0).rotation(0, 20, 0).material({
             image: 'images/target.png'
-        }).filter({/*blur: ['5px'], */brightness: [3]}).update();
+        }).filter({brightness: [3]}).update();
         s.addChild(p);
-        s.p = p;
+        s.p = p;*/
 
 
         function onDeviceMotion(event){
@@ -51,7 +51,7 @@
 
             var delta = accel.x*200;
             s.camera.rotation(0, delta/100, 0).updateT();
-            s.p.rotation(0, delta/50, 0).filter({ brightness: [delta/1500 + 1]}).update();
+            //s.p.rotation(0, delta/50, 0).filter({ brightness: [delta/1500 + 1]}).update();
 
         }
 
@@ -63,7 +63,7 @@
           // Do something
           var delta = gamma*40;
           s.camera.rotation(0, delta/100, 0).updateT();
-          s.p.rotation(0, delta/40, 0).filter({ brightness: [delta/2000 + 1.5]}).update();
+          //s.p.rotation(0, delta/40, 0).filter({ brightness: [delta/2000 + 1.5]}).update();
         }, false);
 
 
@@ -89,7 +89,7 @@
         function mouseMoveHandler(evt) {
             var delta = evt.pageX*5;
             s.camera.rotation(0, delta/100, 0).updateT();
-            s.p.rotation(0, delta/50, 0).filter({ brightness: [delta/1500 + 1]}).update();
+            //s.p.rotation(0, delta/50, 0).filter({ brightness: [delta/1500 + 1]}).update();
             console.log(delta);
         }
 
@@ -100,9 +100,9 @@
                 s.camera.move(0,0,5).updateT();
             }
             else{
-                if(s.p.y < 0){
+                //if(s.p.y < 0){
                     //s.p.move(0,10,0).updateT();
-                }
+                //}
             }
 
             requestAnimationFrame(go);
